@@ -1,22 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
 import { Button } from 'antd';
-import './App.less';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+
+import { Profile, Dashboard } from './Private';
+import { Login } from './Public';
+import PageNotFound from './components/PageNotFound';
+import Auth from './Auth';
 
 const App: React.FunctionComponent<{}> = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-        <Button type="primary">Button</Button>
-      </header>
-    </div>
+    <Router>
+      <Auth>
+        <div>
+          <ul>
+            <li>
+              <Button type="primary">
+                <Link to="/">Login</Link>
+              </Button>
+            </li>
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+            <li>
+              <Link to="/profile">Profile</Link>
+            </li>
+            <li>
+              <Link to="/wala-pange">Page not found</Link>
+            </li>
+          </ul>
+          <hr />
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/profile" component={Profile} />
+            <Route component={PageNotFound} />
+          </Switch>
+        </div>
+      </Auth>
+    </Router>
   );
 };
 
