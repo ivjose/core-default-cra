@@ -1,44 +1,16 @@
-import React from 'react';
-import { Button } from 'antd';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import * as React from 'react';
 
-import { Profile, Dashboard } from './Private';
-import { Login } from './Public';
-import PageNotFound from './components/PageNotFound';
-import Auth from './Auth';
+import RootContainer from './containers/RootContainer';
 
-const App: React.FunctionComponent<{}> = () => {
+/** Context API */
+import AuthContextProvider from './contexts/AuthContext';
+
+function App() {
   return (
-    <Router>
-      <Auth>
-        <div>
-          <ul>
-            <li>
-              <Button type="primary">
-                <Link to="/">Login</Link>
-              </Button>
-            </li>
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-            <li>
-              <Link to="/wala-pange">Page not found</Link>
-            </li>
-          </ul>
-          <hr />
-          <Switch>
-            <Route exact path="/" component={Login} />
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/profile" component={Profile} />
-            <Route component={PageNotFound} />
-          </Switch>
-        </div>
-      </Auth>
-    </Router>
+    <AuthContextProvider>
+      <RootContainer />
+    </AuthContextProvider>
   );
-};
+}
 
 export default App;

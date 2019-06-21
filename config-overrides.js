@@ -6,12 +6,12 @@ module.exports = override(
   fixBabelImports('import', {
     libraryName: 'antd',
     libraryDirectory: 'es',
-    style: true,
+    style: true
   }),
   addLessLoader({
     modifyVars: {
-      'ant-theme-file': "; @import '" + path.resolve(__dirname, './src/styles/default.less') + "'",
+      'ant-theme-file': `; @import '${path.resolve(__dirname, './src/styles/default.less')}'`
     },
-    javascriptEnabled: true,
-  }),
+    javascriptEnabled: true
+  })
 );

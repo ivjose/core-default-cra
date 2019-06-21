@@ -1,5 +1,5 @@
 ## folders
-src/registerServiceWorker.js
+src/serviceWorker.ts
 src/**/__tests__/**
 
 

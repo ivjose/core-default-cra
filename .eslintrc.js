@@ -32,5 +32,9 @@ module.exports = {
           requireLast: true,
       },
       '@typescript-eslint/indent': 'off',
+      '@typescript-eslint/explicit-member-accessibility': 'off',
+      '@typescript-eslint/camelcase': 'off',
+      'react/prop-types': 'off'
+    //   "@typescript-eslint/camelcase": ["error", { "properties": "always" }]
   }
 }

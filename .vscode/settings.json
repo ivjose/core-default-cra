@@ -20,5 +20,8 @@
         { "language": "typescriptreact", "autoFix": true }
     ],
     "eslint.trace.server": "messages",
-    "files.autoSave": "onWindowChange"
+    "files.autoSave": "onWindowChange",
+    "cSpell.words": [
+        "Unmount"
+    ]
 }
