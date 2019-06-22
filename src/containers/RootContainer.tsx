@@ -5,7 +5,7 @@ import { authContext } from '../contexts/AuthContext';
 /** Presentation */
 import { Wrapper } from '../components/Styles';
 
-import Login from './Login';
+import AllForms from './AllForms';
 
 function RootContainer() {
   const { auth, setUnauthStatus } = React.useContext(authContext);
@@ -19,7 +19,7 @@ function RootContainer() {
           Ooops
         </div>
       ) : null}
-      {!auth.status && <Login />}
+      {!auth.status && <AllForms />}
     </Wrapper>
   );
 }
