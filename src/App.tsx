@@ -1,14 +1,38 @@
 import * as React from 'react';
-
-import RootContainer from 'containers/RootContainer';
+import { Switch, Redirect, Route } from 'react-router-dom';
 
 /** Context API */
 import AuthContextProvider from 'contexts/Auth/AuthContext';
+import Loader from 'components/Loader';
+import PrivateRoute from 'containers/Private/PrivateRoute';
+import PublicRoute from 'containers/Public/PublicRoute';
+import { Page404 } from 'components/ErrorPages';
+import ErrorBoundary from './ErrorBoundary';
 
+// Private Routes or Authenticated Routes
+const Dashboard = React.lazy(() => import('containers/Private/Dashboard'));
+
+// Routes can access in Public
+const Login = React.lazy(() => import('containers/Public/Login'));
+const AllForm = React.lazy(() => import('containers/Public/AllForm'));
 function App() {
   return (
     <AuthContextProvider>
-      <RootContainer />
+      <ErrorBoundary>
+        <React.Suspense fallback={<Loader />}>
+          <Switch>
+            <Redirect exact from="/" to="/login" />
+
+            <PublicRoute exact path="/login" component={Login} />
+            <PublicRoute exact path="/all-forms" component={AllForm} />
+
+            <PrivateRoute path="/dashboard" component={Dashboard} />
+
+            <Route exact path="/404" component={Page404} />
+            <Route component={Page404} />
+          </Switch>
+        </React.Suspense>
+      </ErrorBoundary>
     </AuthContextProvider>
   );
 }

@@ -8,6 +8,7 @@ export const AuthReducer: React.Reducer<IState, IAction> = (state, action) => {
     case ActionType.AUTH_SIGN_IN:
       return {
         ...state,
+        ...action.payload,
       };
     case ActionType.AUTH_SUCCESS:
       return {

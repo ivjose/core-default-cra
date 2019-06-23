@@ -1,4 +1,8 @@
-export interface IState {
+export interface ILoading {
+  loading?: boolean;
+}
+
+export interface IState extends ILoading {
   token: string;
   status: boolean;
   error?: string;
@@ -19,7 +23,7 @@ export enum ActionType {
 
 export interface IAction {
   type: ActionType;
-  payload?: IState;
+  payload?: IState | ILoading;
 }
 
 // export interface IState {

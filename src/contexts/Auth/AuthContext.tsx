@@ -25,9 +25,22 @@ export const authContext = React.createContext<IAuthContextInterface>({
 const { Provider } = authContext;
 
 const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // const [auth, dispatch] = React.useReducer(AuthReducer, DEFAULT_USER_AUTH);
-
   const [auth, dispatch] = React.useReducer<React.Reducer<IState, IAction>>(AuthReducer, DEFAULT_USER_AUTH);
+
+  React.useEffect(() => {
+    console.log('Render on Load');
+    const loadToken = () => {
+      let localAuthUser: IState | string | null = window.localStorage.getItem('UserAuth');
+      if (typeof localAuthUser === 'string') {
+        let storeAuthUser: IState = JSON.parse(localAuthUser);
+        authUser(storeAuthUser);
+      } else {
+        logoutUser();
+      }
+      console.log(localAuthUser, 'Page oneload');
+    };
+    loadToken();
+  }, []);
 
   const signInUser = async ({ email, password }: AuthSchema) => {
     try {
@@ -41,8 +54,8 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
       });
       // console.log(response, 'data Chec');
 
-      dispatch({ type: ActionType.AUTH_SIGN_IN });
-      authUser({ status: true, ...response });
+      dispatch({ type: ActionType.AUTH_SIGN_IN, payload: { loading: true } });
+      authUser({ ...response, status: true, loading: false });
     } catch (error) {
       // console.log(error, 'data ERRROR');
     }
@@ -57,7 +70,8 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     window.localStorage.clear();
     dispatch({ type: ActionType.AUTH_LOGOUT, payload: DEFAULT_USER_AUTH });
   };
-  console.log(auth, 'AUTH VALUE UDPATE');
+
+  // console.log(auth, 'AUTH VALUE UDPATE');
 
   return <Provider value={{ auth, signInUser, logoutUser, authUser }}>{children}</Provider>;
 };

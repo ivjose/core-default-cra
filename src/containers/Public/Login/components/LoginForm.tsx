@@ -1,7 +1,7 @@
 import React from 'react';
-
+import { FormikProps } from 'formik';
 import { Input, Form, ResetButton, SubmitButton } from 'components/AntFormik';
-
+import { IFormValue } from '../Types';
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
@@ -13,7 +13,7 @@ const formItemLayout = {
   },
 };
 
-const LoginForm: React.FC<any> = () => {
+const LoginForm: React.FC<FormikProps<IFormValue>> = () => {
   return (
     <Form {...formItemLayout}>
       <Input name="email" label="First name" type="email" placeholder="Enter your Username" />
