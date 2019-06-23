@@ -1,6 +1,8 @@
 export interface IState {
   token: string;
   status: boolean;
+  error?: string;
+  success?: string;
 }
 
 export interface AuthSchema {

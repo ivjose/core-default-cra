@@ -8,7 +8,7 @@ import { IFormValue } from './Types';
 /** Context */
 import { authContext } from 'contexts/Auth/AuthContext';
 
-function Login() {
+const Login: React.FC<{}> = () => {
   const { auth, signInUser } = React.useContext(authContext);
 
   const handleSubmit = async (values: IFormValue, actions: FormikActions<IFormValue>) => {
@@ -33,6 +33,6 @@ function Login() {
       />
     </div>
   );
-}
+};
 
 export default Login;
