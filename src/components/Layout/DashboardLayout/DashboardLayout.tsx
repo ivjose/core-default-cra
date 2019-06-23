@@ -1,5 +1,6 @@
 import React from 'react';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Modal } from 'antd';
+
 import { authContext } from 'contexts/Auth/AuthContext';
 
 const { Header, Sider, Content } = Layout;
@@ -7,6 +8,16 @@ const { Header, Sider, Content } = Layout;
 const DashboardLayout: React.FC = ({ children }) => {
   const [collapsed, setToggle] = React.useState(false);
   const { logoutUser } = React.useContext(authContext);
+
+  const showConfirm = () => {
+    Modal.confirm({
+      title: 'Do you want to Logout?',
+      onOk() {
+        logoutUser();
+      },
+      onCancel() {},
+    });
+  };
 
   return (
     <Layout style={{ height: '100%' }}>
@@ -21,7 +32,7 @@ const DashboardLayout: React.FC = ({ children }) => {
             <Icon type="video-camera" />
             <span>nav 2</span>
           </Menu.Item>
-          <Menu.Item key="3" onClick={() => logoutUser()}>
+          <Menu.Item key="3" onClick={showConfirm}>
             <Icon type="logout" />
             <span>Logout</span>
           </Menu.Item>
