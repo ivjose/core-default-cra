@@ -1,27 +1,29 @@
 import * as React from 'react';
 
 /** Context */
-import { authContext } from '../contexts/AuthContext';
+import { authContext } from 'contexts/Auth/AuthContext';
 /** Presentation */
 import { Wrapper } from '../components/Styles';
 
-import AllForms from './AllForms';
+import Login from 'containers/Public/Login';
 
-function RootContainer() {
-  const { auth, setUnauthStatus } = React.useContext(authContext);
+const RootContainer: React.FC<{}> = () => {
+  const { auth, logoutUser } = React.useContext(authContext);
+  console.log(auth, 'SSSSSSSSS');
+
   return (
     <Wrapper>
       {auth.status ? (
         <div>
-          <button type="button" onClick={() => setUnauthStatus()}>
+          <button type="button" onClick={() => logoutUser()}>
             logout
           </button>
           Ooops
         </div>
       ) : null}
-      {!auth.status && <AllForms />}
+      {!auth.status && <Login />}
     </Wrapper>
   );
-}
+};
 
 export default RootContainer;

@@ -19,8 +19,8 @@ export const TreeSelect = ({ name, required, label, ...restProps }: TreeSelectPr
       >
         <AntTreeSelect
           value={value}
-          onChange={e => setFieldValue(name, e.valueOf())}
-          onBlur={e => setFieldTouched(name)}
+          onChange={val => setFieldValue(name, val.valueOf())}
+          onBlur={() => setFieldTouched(name)}
           {...restProps}
         />
       </FormItem>

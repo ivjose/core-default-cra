@@ -7,7 +7,8 @@ export function Form(props: FormProps) {
   return (
     <Field>
       {({ form: { handleReset, handleSubmit } }: FieldProps) => (
-        <AntdForm onReset={handleReset} onSubmit={handleSubmit} {...props} />
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        <AntdForm onReset={handleReset} onSubmit={handleSubmit as any} {...props} />
       )}
     </Field>
   );
