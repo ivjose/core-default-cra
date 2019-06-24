@@ -6,9 +6,7 @@ import { RateProps as AntRateProps } from 'antd/lib/rate';
 
 const FormItem = Form.Item;
 
-export type RateProps = FormikFieldProps & AntRateProps;
-
-export const Rate = ({ name, required, label, ...restProps }: RateProps) => (
+export const Rate: React.FC<FormikFieldProps & AntRateProps> = ({ name, required, label, ...restProps }) => (
   <Field name={name}>
     {({ field: { value }, form: { touched, errors, setFieldValue, setFieldTouched } }: FieldProps) => (
       <FormItem
@@ -19,8 +17,8 @@ export const Rate = ({ name, required, label, ...restProps }: RateProps) => (
       >
         <AntRate
           value={value}
-          onChange={e => {
-            setFieldValue(name, e.valueOf());
+          onChange={val => {
+            setFieldValue(name, val.valueOf());
             setFieldTouched(name, true);
           }}
           {...restProps}

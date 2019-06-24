@@ -9,24 +9,22 @@ const PublicRoute: React.FC<RouteComponentProps & IPageChecker> = ({ component: 
   const { from } = location.state || { from: { pathname: '/dashboard' } };
   const { auth } = React.useContext(authContext);
 
-  if (auth.status) {
-    return <Redirect to={from} />;
-  } else {
-    return (
-      <React.Suspense fallback={<Loader />}>
-        <Route
-          {...rest}
-          render={routeProps => {
-            return (
-              <LoginLayout>
-                <Component {...routeProps} />
-              </LoginLayout>
-            );
-          }}
-        />
-      </React.Suspense>
-    );
-  }
+  return (
+    <Route
+      {...rest}
+      render={routeProps => {
+        return auth.status ? (
+          <Redirect to={from} />
+        ) : (
+          <LoginLayout>
+            <React.Suspense fallback={<Loader />}>
+              <Component {...routeProps} />
+            </React.Suspense>
+          </LoginLayout>
+        );
+      }}
+    />
+  );
 };
 
 export default withRouter(PublicRoute);

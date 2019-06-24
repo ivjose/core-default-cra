@@ -19,8 +19,8 @@ export const Radio = ({ name, required, label, ...restProps }: RadioGroupProps) 
       >
         <AntRadio
           value={value}
-          onChange={e => {
-            setFieldValue(name, e.target.value);
+          onChange={val => {
+            setFieldValue(name, val.target.value);
             setFieldTouched(name, true);
           }}
           {...restProps}
@@ -41,8 +41,8 @@ Radio.Group = ({ name, required, label, ...restProps }: RadioGroupProps) => (
       >
         <AntRadio.Group
           value={value}
-          onChange={e => {
-            setFieldValue(name, e.target.value);
+          onChange={val => {
+            setFieldValue(name, val.target.value);
             setFieldTouched(name, true);
           }}
           {...restProps}

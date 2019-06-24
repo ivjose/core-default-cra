@@ -19,7 +19,8 @@ export const Select = ({ name, required, label, children, ...restProps }: Select
           help={touched[name] && errors[name]}
         >
           <AntSelect
-            onChange={(v: any) => setFieldValue(name, v)}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            onChange={(val: any) => setFieldValue(name, val)}
             onBlur={() => setFieldTouched(name)}
             value={value}
             {...restProps}

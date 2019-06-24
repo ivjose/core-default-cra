@@ -7,9 +7,12 @@ import { TimePickerProps as AntTimePickerProps } from 'antd/lib/time-picker';
 
 const FormItem = Form.Item;
 
-export type TimePickerProps = FormikFieldProps & AntTimePickerProps;
-
-export const TimePicker = ({ name, label, required, ...restProps }: TimePickerProps) => (
+export const TimePicker: React.FC<FormikFieldProps & AntTimePickerProps> = ({
+  name,
+  label,
+  required,
+  ...restProps
+}) => (
   <Field name={name}>
     {({ field: { value }, form: { touched, errors, setFieldValue, setFieldTouched } }: FieldProps) => (
       <FormItem

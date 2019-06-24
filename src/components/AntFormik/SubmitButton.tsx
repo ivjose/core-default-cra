@@ -3,9 +3,12 @@ import { Field, FieldProps } from 'formik';
 import * as React from 'react';
 import { ButtonProps } from 'antd/lib/button';
 
-export type SubmitButtonProps = ButtonProps & { onSuccess?: () => void };
-
-export const SubmitButton = ({ children, onSuccess, ...restProps }: SubmitButtonProps) => (
+export const SubmitButton: React.FC<ButtonProps & { onSuccess?: () => void }> = ({
+  children,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  onSuccess,
+  ...restProps
+}) => (
   <Field>
     {({ form: { isSubmitting, isValid } }: FieldProps) => (
       <Button

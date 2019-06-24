@@ -3,7 +3,7 @@ import { Field, FieldProps } from 'formik';
 import { Form as AntdForm } from 'antd';
 import { FormProps } from 'antd/lib/form';
 
-export function Form(props: FormProps) {
+export const Form: React.FC<FormProps> = props => {
   return (
     <Field>
       {({ form: { handleReset, handleSubmit } }: FieldProps) => (
@@ -12,4 +12,4 @@ export function Form(props: FormProps) {
       )}
     </Field>
   );
-}
+};

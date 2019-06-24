@@ -9,27 +9,25 @@ const PrivateRoute: React.FC<RouteComponentProps & IPageChecker> = ({ component:
   const { auth } = React.useContext(authContext);
 
   return (
-    <React.Suspense fallback={<Loader />}>
-      <DashboardLayout>
-        <Route
-          {...rest}
-          render={props => {
-            return auth.status ? (
-              <div className="Layout">
-                <Component {...props} />
-              </div>
-            ) : (
-              <Redirect
-                to={{
-                  pathname: '/login',
-                  state: { from: props.location.pathname },
-                }}
-              />
-            );
-          }}
-        />
-      </DashboardLayout>
-    </React.Suspense>
+    <Route
+      {...rest}
+      render={props => {
+        return auth.status ? (
+          <DashboardLayout>
+            <React.Suspense fallback={<Loader />}>
+              <Component {...props} />
+            </React.Suspense>
+          </DashboardLayout>
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/login',
+              state: { from: props.location.pathname },
+            }}
+          />
+        );
+      }}
+    />
   );
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout, Menu, Icon, Modal } from 'antd';
+import { Link } from 'react-router-dom';
 
 import { authContext } from 'contexts/Auth/AuthContext';
 
@@ -25,12 +26,16 @@ const DashboardLayout: React.FC = ({ children }) => {
         <div className="logo" style={{ height: 32, background: 'rgba(255, 255, 255, 0.2)', margin: 16 }} />
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.Item key="1">
-            <Icon type="user" />
-            <span>nav 1</span>
+            <Link to="/dashboard">
+              <Icon type="user" />
+              <span>Dashboard</span>
+            </Link>
           </Menu.Item>
           <Menu.Item key="2">
-            <Icon type="video-camera" />
-            <span>nav 2</span>
+            <Link to="/all-forms">
+              <Icon type="video-camera" />
+              <span>All Forms</span>
+            </Link>
           </Menu.Item>
           <Menu.Item key="3" onClick={showConfirm}>
             <Icon type="logout" />

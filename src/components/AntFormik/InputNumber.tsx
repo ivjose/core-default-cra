@@ -6,9 +6,12 @@ import { FormikFieldProps } from './FieldProps';
 
 const FormItem = Form.Item;
 
-export type InputNumberProps = FormikFieldProps & AntInputNumberProps;
-
-export const InputNumber = ({ name, required, label, ...restProps }: InputNumberProps) => (
+export const InputNumber: React.FC<FormikFieldProps & AntInputNumberProps> = ({
+  name,
+  required,
+  label,
+  ...restProps
+}) => (
   <Field name={name}>
     {({ field: { value, onBlur }, form: { setFieldValue, touched, errors } }: FieldProps) => (
       <FormItem
@@ -20,7 +23,7 @@ export const InputNumber = ({ name, required, label, ...restProps }: InputNumber
         <AntInputNumber
           name={name}
           value={value}
-          onChange={v => setFieldValue(name, v)}
+          onChange={val => setFieldValue(name, val)}
           onBlur={onBlur}
           {...restProps}
         />

@@ -1,14 +1,20 @@
 import React from 'react';
-import { Layout } from 'antd';
+import { Layout, Row, Col } from 'antd';
 
-const { Content } = Layout;
+const { Content, Footer } = Layout;
 
 const LoginLayout: React.FC = ({ children }) => {
   return (
     <Layout style={{ height: '100%' }}>
-      <Content style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
-        {children}
+      <Content style={{ height: 'inherit' }}>
+        <Row type="flex" justify="center" align="middle" style={{ height: 'inherit' }}>
+          <Col span={5}>
+            <h1>Title</h1>
+            {children}
+          </Col>
+        </Row>
       </Content>
+      <Footer style={{ textAlign: 'center' }}>Footer</Footer>
     </Layout>
   );
 };

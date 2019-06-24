@@ -6,9 +6,7 @@ import { TransferProps as AntTransferProps } from 'antd/lib/transfer';
 
 const FormItem = Form.Item;
 
-export type TransferProps = FormikFieldProps & AntTransferProps;
-
-export const Transfer = ({ name, required, label, ...restProps }: TransferProps) => (
+export const Transfer: React.FC<FormikFieldProps & AntTransferProps> = ({ name, required, label, ...restProps }) => (
   <Field name={name}>
     {({ field: { value }, form: { touched, errors, setFieldValue, setFieldTouched } }: FieldProps) => (
       <FormItem
@@ -19,8 +17,8 @@ export const Transfer = ({ name, required, label, ...restProps }: TransferProps)
       >
         <AntTransfer
           targetKeys={value || []}
-          onChange={v => {
-            setFieldValue(name, v);
+          onChange={val => {
+            setFieldValue(name, val);
             setFieldTouched(name, true);
           }}
           {...restProps}

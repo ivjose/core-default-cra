@@ -8,8 +8,8 @@ import { IFormValue } from './Types';
 /** Context */
 import { authContext } from 'contexts/Auth/AuthContext';
 
-const Login: React.FC<{}> = () => {
-  const { auth, signInUser } = React.useContext(authContext);
+const Login: React.FC = () => {
+  const { signInUser } = React.useContext(authContext);
 
   const handleSubmit = async (values: IFormValue, actions: FormikActions<IFormValue>) => {
     console.log({ values, actions });
@@ -17,21 +17,17 @@ const Login: React.FC<{}> = () => {
     actions.setSubmitting(false);
   };
 
-  console.log(auth, 'Logint!!');
-
   return (
-    <div style={{ width: 500 }}>
-      <Formik
-        initialValues={{
-          email: 'eve.holt@reqres.in',
-          password: 'cityslicka',
-        }}
-        onSubmit={handleSubmit}
-        enableReinitialize={true}
-        validationSchema={loginSchema}
-        render={(formikBag: FormikProps<IFormValue>) => <LoginForm {...formikBag} />}
-      />
-    </div>
+    <Formik
+      initialValues={{
+        email: 'eve.holt@reqres.in',
+        password: 'cityslicka',
+      }}
+      onSubmit={handleSubmit}
+      enableReinitialize={true}
+      validationSchema={loginSchema}
+      render={(formikBag: FormikProps<IFormValue>) => <LoginForm {...formikBag} />}
+    />
   );
 };
 

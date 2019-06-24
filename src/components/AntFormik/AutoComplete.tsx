@@ -6,9 +6,12 @@ import { AutoCompleteProps as AntAutoCompleteProps } from 'antd/lib/auto-complet
 
 const FormItem = Form.Item;
 
-export type AutoCompleteProps = FormikFieldProps & AntAutoCompleteProps;
-
-export const AutoComplete = ({ name, required, label, ...restProps }: AutoCompleteProps) => (
+export const AutoComplete: React.FC<FormikFieldProps & AntAutoCompleteProps> = ({
+  name,
+  required,
+  label,
+  ...restProps
+}) => (
   <Field name={name}>
     {({ field: { value }, form: { touched, errors, setFieldValue, setFieldTouched } }: FieldProps) => (
       <FormItem

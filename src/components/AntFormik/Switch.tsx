@@ -6,9 +6,7 @@ import { FormikFieldProps } from './FieldProps';
 
 const FormItem = Form.Item;
 
-export type SwitchProps = FormikFieldProps & AntSwitchProps;
-
-export const Switch = ({ name, required, label, ...restProps }: SwitchProps) => (
+export const Switch: React.FC<FormikFieldProps & AntSwitchProps> = ({ name, required, label, ...restProps }) => (
   <Field name={name}>
     {({ field: { value }, form: { touched, errors, setFieldValue, setFieldTouched } }: FieldProps) => (
       <FormItem
@@ -19,8 +17,8 @@ export const Switch = ({ name, required, label, ...restProps }: SwitchProps) => 
       >
         <AntSwitch
           checked={value}
-          onChange={v => {
-            setFieldValue(name, v);
+          onChange={val => {
+            setFieldValue(name, val);
             setFieldTouched(name, true);
           }}
           {...restProps}

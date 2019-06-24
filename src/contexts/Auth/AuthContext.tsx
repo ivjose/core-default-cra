@@ -32,12 +32,10 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     const loadToken = () => {
       let localAuthUser: IState | string | null = window.localStorage.getItem('UserAuth');
       if (typeof localAuthUser === 'string') {
-        let storeAuthUser: IState = JSON.parse(localAuthUser);
-        authUser(storeAuthUser);
+        authUser(JSON.parse(localAuthUser));
       } else {
         logoutUser();
       }
-      console.log(localAuthUser, 'Page oneload');
     };
     loadToken();
   }, []);

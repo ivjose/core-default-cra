@@ -6,9 +6,7 @@ import { SliderProps as AntSliderProps } from 'antd/lib/slider';
 
 const FormItem = Form.Item;
 
-export type SliderProps = FormikFieldProps & AntSliderProps;
-
-export const Slider = ({ name, required, label, ...restProps }: SliderProps) => (
+export const Slider: React.FC<FormikFieldProps & AntSliderProps> = ({ name, required, label, ...restProps }) => (
   <Field name={name}>
     {({ field: { value }, form: { touched, errors, setFieldValue, setFieldTouched } }: FieldProps) => (
       <FormItem
@@ -19,8 +17,8 @@ export const Slider = ({ name, required, label, ...restProps }: SliderProps) => 
       >
         <AntSlider
           value={value}
-          onChange={e => {
-            setFieldValue(name, e.valueOf());
+          onChange={val => {
+            setFieldValue(name, val.valueOf());
             setFieldTouched(name, true);
           }}
           {...restProps}
