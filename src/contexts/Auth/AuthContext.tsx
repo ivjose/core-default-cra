@@ -6,6 +6,7 @@ import { IState, AuthSchema, ActionType, IAction } from './Types';
 /** Utils */
 import { DEFAULT_USER_AUTH } from './constants';
 import request from 'utils/api';
+import { localStorage } from 'utils/helpers';
 import { AuthReducer } from './reducers';
 
 interface IAuthContextInterface {
@@ -28,15 +29,17 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
   const [auth, dispatch] = React.useReducer<React.Reducer<IState, IAction>>(AuthReducer, DEFAULT_USER_AUTH);
 
   React.useEffect(() => {
-    console.log('Render on Load');
     const loadToken = () => {
-      let localAuthUser: IState | string | null = window.localStorage.getItem('UserAuth');
-      if (typeof localAuthUser === 'string') {
-        authUser(JSON.parse(localAuthUser));
+      let returnValue: string | null = localStorage.get('UserAuth');
+      console.log(returnValue);
+
+      if (typeof returnValue === 'string') {
+        authUser(JSON.parse(returnValue));
       } else {
         logoutUser();
       }
     };
+
     loadToken();
   }, []);
 
@@ -50,28 +53,49 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
           password,
         },
       });
-      // console.log(response, 'data Chec');
 
-      dispatch({ type: ActionType.AUTH_SIGN_IN, payload: { loading: true } });
-      authUser({ ...response, status: true, loading: false });
+      dispatch({
+        type: ActionType.AUTH_SIGN_IN,
+        payload: { loading: true },
+      });
+      authUser({
+        ...response,
+        status: true,
+        loading: false,
+      });
     } catch (error) {
-      // console.log(error, 'data ERRROR');
+      // console.log(error, 'data ERROR');
     }
   };
 
   const authUser = (userAuth: IState) => {
-    window.localStorage.setItem('UserAuth', JSON.stringify(userAuth));
-    dispatch({ type: ActionType.AUTH_SUCCESS, payload: userAuth });
+    localStorage.save({ value: userAuth, name: 'UserAuth' });
+    dispatch({
+      type: ActionType.AUTH_SUCCESS,
+      payload: userAuth,
+    });
   };
 
   const logoutUser = () => {
-    window.localStorage.clear();
-    dispatch({ type: ActionType.AUTH_LOGOUT, payload: DEFAULT_USER_AUTH });
+    localStorage.clear();
+    dispatch({
+      type: ActionType.AUTH_LOGOUT,
+      payload: DEFAULT_USER_AUTH,
+    });
   };
 
-  // console.log(auth, 'AUTH VALUE UDPATE');
-
-  return <Provider value={{ auth, signInUser, logoutUser, authUser }}>{children}</Provider>;
+  return (
+    <Provider
+      value={{
+        auth,
+        signInUser,
+        logoutUser,
+        authUser,
+      }}
+    >
+      {children}
+    </Provider>
+  );
 };
 
 export default AuthProvider;

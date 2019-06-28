@@ -3,7 +3,7 @@ import * as React from 'react';
 import { DEFAULT_USER_AUTH } from './constants';
 import { IState, ActionType, IAction } from './Types';
 
-export const AuthReducer: React.Reducer<IState, IAction> = (state, action) => {
+export const AuthReducer: React.Reducer<IState, IAction> = (state, action): IState => {
   switch (action.type) {
     case ActionType.AUTH_SIGN_IN:
       return {

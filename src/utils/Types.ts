@@ -4,3 +4,10 @@ export interface IPageChecker {
   path?: string;
   exact?: boolean;
 }
+
+// export interface IGetLocalStorage
+
+export interface ISaveLocalStorage<T> {
+  name: string;
+  value: T;
+}
