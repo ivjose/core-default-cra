@@ -1,6 +1,5 @@
 import React from 'react';
 import { Icon } from 'antd';
-
 import {
   Checkbox,
   Input,
@@ -24,14 +23,15 @@ import {
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
-    sm: { span: 8 },
+    sm: { span: 4 },
   },
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 8 },
+    sm: { span: 10 },
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const mockData: any[] = [];
 for (let i = 0; i < 20; i++) {
   mockData.push({
@@ -42,6 +42,7 @@ for (let i = 0; i < 20; i++) {
   });
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const SampleForm: React.FC<any> = () => {
   return (
     <Form {...formItemLayout}>
@@ -52,7 +53,6 @@ const SampleForm: React.FC<any> = () => {
       <Cascader
         name="country"
         label="Country"
-        placeholder="Please select"
         options={[
           {
             value: 'zhejiang',
@@ -139,7 +139,7 @@ const SampleForm: React.FC<any> = () => {
         </Select.Option>
         <Select.Option value="Yiminghe">yiminghe</Select.Option>
       </Select>
-      <Slider name="price" label="Price" tooltipVisible />
+      <Slider name="price" label="Price" />
       <Slider name="price_range" label="Range Price" range />
       <Switch name="sex" label="Sex" unCheckedChildren="Male" checkedChildren="Female" />
 
@@ -186,7 +186,7 @@ const SampleForm: React.FC<any> = () => {
         treeDefaultExpandAll
       />
 
-      <SubmitButton>submit</SubmitButton>
+      <SubmitButton disabled={false}>submit</SubmitButton>
       <ResetButton>Reset</ResetButton>
     </Form>
   );

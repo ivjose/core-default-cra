@@ -1,22 +1,16 @@
 import * as React from 'react';
-import { Radio as AntRadio, Form } from 'antd';
+import { Radio as AntRadio } from 'antd';
 import { Field, FieldProps } from 'formik';
 import { RadioGroupProps as AntRadioGroupProps } from 'antd/lib/radio/interface';
 import { FormikFieldProps } from './FieldProps';
-
-const FormItem = Form.Item;
+import { FormItem } from './FormItem';
 
 export type RadioGroupProps = FormikFieldProps & AntRadioGroupProps;
 
 export const Radio = ({ name, required, label, ...restProps }: RadioGroupProps) => (
   <Field name={name}>
-    {({ field: { value }, form: { touched, errors, setFieldValue, setFieldTouched } }: FieldProps) => (
-      <FormItem
-        required={required}
-        label={label}
-        validateStatus={touched[name] && errors[name] ? 'error' : ''}
-        help={touched[name] && errors[name]}
-      >
+    {({ field: { value }, form: { setFieldValue, setFieldTouched } }: FieldProps) => (
+      <FormItem name={name} required={required} label={label}>
         <AntRadio
           value={value}
           onChange={val => {
@@ -32,13 +26,8 @@ export const Radio = ({ name, required, label, ...restProps }: RadioGroupProps) 
 
 Radio.Group = ({ name, required, label, ...restProps }: RadioGroupProps) => (
   <Field name={name}>
-    {({ field: { value }, form: { touched, errors, setFieldValue, setFieldTouched } }: FieldProps) => (
-      <FormItem
-        required={required}
-        label={label}
-        validateStatus={touched[name] && errors[name] ? 'error' : ''}
-        help={touched[name] && errors[name]}
-      >
+    {({ field: { value }, form: { setFieldValue, setFieldTouched } }: FieldProps) => (
+      <FormItem name={name} required={required} label={label}>
         <AntRadio.Group
           value={value}
           onChange={val => {

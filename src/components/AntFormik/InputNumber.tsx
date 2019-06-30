@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { InputNumber as AntInputNumber, Form } from 'antd';
+import { InputNumber as AntInputNumber } from 'antd';
 import { Field, FieldProps } from 'formik';
 import { InputNumberProps as AntInputNumberProps } from 'antd/lib/input-number';
 import { FormikFieldProps } from './FieldProps';
-
-const FormItem = Form.Item;
+import { FormItem } from './FormItem';
 
 export const InputNumber: React.FC<FormikFieldProps & AntInputNumberProps> = ({
   name,
@@ -13,13 +12,8 @@ export const InputNumber: React.FC<FormikFieldProps & AntInputNumberProps> = ({
   ...restProps
 }) => (
   <Field name={name}>
-    {({ field: { value, onBlur }, form: { setFieldValue, touched, errors } }: FieldProps) => (
-      <FormItem
-        required={required}
-        label={label}
-        validateStatus={touched[name] && errors[name] ? 'error' : ''}
-        help={touched[name] && errors[name]}
-      >
+    {({ field: { value, onBlur }, form: { setFieldValue } }: FieldProps) => (
+      <FormItem name={name} required={required} label={label}>
         <AntInputNumber
           name={name}
           value={value}

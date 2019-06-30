@@ -5,7 +5,9 @@ import * as Yup from 'yup';
 import SampleForm from './components/SampleForm';
 
 export const registrationSchema = Yup.object().shape({
-  first_name: Yup.string().required('This field is required!'),
+  first_name: Yup.string()
+    .min(4)
+    .required('This field is required!'),
   password: Yup.string()
     .min(4)
     .required('This field is required!'),

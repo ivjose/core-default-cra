@@ -1,22 +1,17 @@
 import * as React from 'react';
-import { TreeSelect as AntTreeSelect, Form } from 'antd';
+import { TreeSelect as AntTreeSelect } from 'antd';
 import { Field, FieldProps } from 'formik';
 import { FormikFieldProps } from './FieldProps';
 import { TreeSelectProps as AntTreeSelectProps } from 'antd/lib/tree-select';
+import { TreeNodeValue as AntTreeNodeValue } from 'antd/lib/tree-select/interface';
+import { FormItem } from './FormItem';
 
-const FormItem = Form.Item;
-
-export type TreeSelectProps = FormikFieldProps & AntTreeSelectProps & { children?: React.ReactNode };
+export type TreeSelectProps = FormikFieldProps & AntTreeSelectProps<AntTreeNodeValue> & { children?: React.ReactNode };
 
 export const TreeSelect = ({ name, required, label, ...restProps }: TreeSelectProps) => (
   <Field name={name}>
-    {({ field: { value }, form: { touched, errors, setFieldValue, setFieldTouched } }: FieldProps) => (
-      <FormItem
-        required={required}
-        label={label}
-        validateStatus={touched[name] && errors[name] ? 'error' : ''}
-        help={touched[name] && errors[name]}
-      >
+    {({ field: { value }, form: { setFieldValue, setFieldTouched } }: FieldProps) => (
+      <FormItem name={name} required={required} label={label}>
         <AntTreeSelect
           value={value}
           onChange={val => setFieldValue(name, val.valueOf())}

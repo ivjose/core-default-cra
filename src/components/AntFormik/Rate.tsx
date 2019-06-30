@@ -1,20 +1,14 @@
 import * as React from 'react';
-import { Rate as AntRate, Form } from 'antd';
+import { Rate as AntRate } from 'antd';
 import { Field, FieldProps } from 'formik';
 import { FormikFieldProps } from './FieldProps';
 import { RateProps as AntRateProps } from 'antd/lib/rate';
-
-const FormItem = Form.Item;
+import { FormItem } from './FormItem';
 
 export const Rate: React.FC<FormikFieldProps & AntRateProps> = ({ name, required, label, ...restProps }) => (
   <Field name={name}>
-    {({ field: { value }, form: { touched, errors, setFieldValue, setFieldTouched } }: FieldProps) => (
-      <FormItem
-        required={required}
-        label={label}
-        validateStatus={touched[name] && errors[name] ? 'error' : ''}
-        help={touched[name] && errors[name]}
-      >
+    {({ field: { value }, form: { setFieldValue, setFieldTouched } }: FieldProps) => (
+      <FormItem name={name} required={required} label={label}>
         <AntRate
           value={value}
           onChange={val => {

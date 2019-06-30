@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { TimePicker as AntTimePicker, Form } from 'antd';
+import { TimePicker as AntTimePicker } from 'antd';
 import { Field, FieldProps } from 'formik';
 import moment from 'moment';
 import { FormikFieldProps } from './FieldProps';
 import { TimePickerProps as AntTimePickerProps } from 'antd/lib/time-picker';
-
-const FormItem = Form.Item;
+import { FormItem } from './FormItem';
 
 export const TimePicker: React.FC<FormikFieldProps & AntTimePickerProps> = ({
   name,
@@ -14,13 +13,8 @@ export const TimePicker: React.FC<FormikFieldProps & AntTimePickerProps> = ({
   ...restProps
 }) => (
   <Field name={name}>
-    {({ field: { value }, form: { touched, errors, setFieldValue, setFieldTouched } }: FieldProps) => (
-      <FormItem
-        required={required}
-        label={label}
-        validateStatus={touched[name] && errors[name] ? 'error' : ''}
-        help={touched[name] && errors[name]}
-      >
+    {({ field: { value }, form: { setFieldValue, setFieldTouched } }: FieldProps) => (
+      <FormItem name={name} required={required} label={label}>
         <AntTimePicker
           value={value ? moment(value) : undefined}
           onChange={date => {

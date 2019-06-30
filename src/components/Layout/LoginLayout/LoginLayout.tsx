@@ -8,10 +8,7 @@ const LoginLayout: React.FC = ({ children }) => {
     <Layout style={{ height: '100%' }}>
       <Content style={{ height: 'inherit' }}>
         <Row type="flex" justify="center" align="middle" style={{ height: 'inherit' }}>
-          <Col span={5}>
-            <h1>Title</h1>
-            {children}
-          </Col>
+          <Col span={5}>{children}</Col>
         </Row>
       </Content>
       <Footer style={{ textAlign: 'center' }}>Footer</Footer>
