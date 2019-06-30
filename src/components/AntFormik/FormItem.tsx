@@ -15,9 +15,10 @@ export const FormItem = ({ name, hasFeedback, showValidateSuccess, children, ...
   <Field name={name}>
     {({ form: { errors = {}, touched = {} } }: FieldProps) => {
       const error = get(errors, name, undefined);
-      const isTouched = get(touched, name, false) as boolean;
-      const hasError = error !== undefined && isTouched;
+      const isTouched = get(touched, name, undefined) as boolean;
+      const hasError = error !== false && isTouched;
       const isValid = !error && isTouched;
+
       return (
         <Form.Item
           validateStatus={hasError ? 'error' : isValid && showValidateSuccess ? 'success' : undefined}
