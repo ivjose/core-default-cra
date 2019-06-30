@@ -19,3 +19,12 @@ export const localStorage = {
     window.localStorage.clear();
   },
 };
+
+export const loadDash = {
+  get: (obj: any, path: string, defaultValue: boolean = false) => {
+    return String.prototype.split
+      .call(path, /[,[\].]+?/)
+      .filter(Boolean)
+      .reduce((a, c) => (Object.hasOwnProperty.call(a, c) ? a[c] : defaultValue), obj);
+  },
+};

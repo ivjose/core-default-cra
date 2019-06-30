@@ -24,5 +24,8 @@
     "cSpell.words": [
         "Cascader",
         "Unmount"
+    ],
+    "cSpell.ignoreWords": [
+        "browserslist"
     ]
 }
