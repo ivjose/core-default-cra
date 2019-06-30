@@ -21,6 +21,7 @@ export const localStorage = {
 };
 
 export const loadDash = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   get: (obj: any, path: string, defaultValue: boolean = false) => {
     return String.prototype.split
       .call(path, /[,[\].]+?/)
