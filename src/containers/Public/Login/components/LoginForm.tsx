@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormikProps } from 'formik';
+import { Icon } from 'antd';
 import { Input, Form, ResetButton, SubmitButton } from 'components/AntFormik';
 import { IFormValue } from '../Types';
 // const formItemLayout = {
@@ -16,8 +17,18 @@ import { IFormValue } from '../Types';
 const LoginForm: React.FC<FormikProps<IFormValue>> = () => {
   return (
     <Form>
-      <Input name="email" label="First name" type="email" placeholder="Enter your Username" />
-      <Input.Password name="password" label="Password" type="password" placeholder="Enter your Password" />
+      <Input
+        name="email"
+        type="email"
+        placeholder="Enter your Username"
+        prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+      />
+      <Input.Password
+        name="password"
+        type="password"
+        placeholder="Enter your Password"
+        prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+      />
 
       <SubmitButton disabled={false} block style={{ marginBottom: 20 }}>
         submit

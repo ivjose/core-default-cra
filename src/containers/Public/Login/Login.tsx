@@ -13,8 +13,14 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (values: IFormValue, actions: FormikActions<IFormValue>) => {
     console.log({ values, actions });
-    signInUser({ email: values.email, password: values.password });
-    actions.setSubmitting(false);
+
+    actions.setSubmitting(true);
+    try {
+      await signInUser({ email: values.email, password: values.password });
+      actions.setSubmitting(false);
+    } catch (error) {
+      actions.setSubmitting(false);
+    }
   };
 
   return (
