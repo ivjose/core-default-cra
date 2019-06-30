@@ -80,7 +80,9 @@ const HeaderRightNav: React.FC = () => {
             style={{ backgroundColor: 'gray', verticalAlign: 'middle' }}
             src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
           />
-          <span style={{ marginLeft: 8 }}>John Doe</span>
+          <span style={{ marginLeft: 8 }}>
+            <b>Hi!</b> John Doe
+          </span>
         </HeaderAction>
       </Dropdown>
     </HeaderRight>
