@@ -12,6 +12,13 @@ import ErrorBoundary from './ErrorBoundary';
 
 // Private Routes or Authenticated Routes
 const Dashboard = React.lazy(() => import('containers/Private/Dashboard'));
+const Profile = React.lazy(() => import('containers/Private/Profile'));
+
+const EmployeeManagement = React.lazy(() => import('containers/Private/EmployeeManagement'));
+const Timekeeping = React.lazy(() => import('containers/Private/Timekeeping'));
+const Payroll = React.lazy(() => import('containers/Private/Payroll'));
+const Reports = React.lazy(() => import('containers/Private/Reports'));
+const Settings = React.lazy(() => import('containers/Private/Settings'));
 
 // Routes can access in Public
 const Login = React.lazy(() => import('containers/Public/Login'));
@@ -29,6 +36,15 @@ const App: React.FC = () => {
             <PrivateRoute exact path="/all-forms" component={AllForm} />
 
             <PrivateRoute path="/dashboard" component={Dashboard} />
+            <PrivateRoute path="/profile" component={Profile} />
+
+            <PrivateRoute path="/employee-management" component={EmployeeManagement} />
+            <PrivateRoute path="/timekeeping" component={Timekeeping} />
+            <PrivateRoute path="/payroll" component={Payroll} />
+            <PrivateRoute path="/reports" component={EmployeeManagement} />
+            <PrivateRoute path="/reports" component={Reports} />
+
+            <PrivateRoute path="/settings" component={Settings} />
 
             <Route exact path="/404" component={Page404} />
             <Route component={Page404} />
