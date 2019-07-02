@@ -1,6 +1,8 @@
 import React from 'react';
 import { Menu, Icon } from 'antd';
 
+import Table from 'components/Table';
+
 const EmployeeManagement = () => {
   const subRoutes = [
     {
@@ -40,6 +42,23 @@ const EmployeeManagement = () => {
         ))}
       </Menu>
       EmployeeManagement
+      <Table
+        url="posts"
+        columns={[
+          {
+            title: 'ID',
+            dataIndex: 'id',
+          },
+          {
+            title: 'Title',
+            dataIndex: 'title',
+          },
+          {
+            title: 'Body',
+            dataIndex: 'body',
+          },
+        ]}
+      />
     </div>
   );
 };
