@@ -1,25 +1,21 @@
 import * as React from 'react';
-import { Select as AntSelect, Form } from 'antd';
+import { Select as AntSelect } from 'antd';
 import { Field, FieldProps } from 'formik';
 import { SelectProps as AntSelectProps, OptionProps } from 'antd/lib/select';
 import { FormikFieldProps } from './FieldProps';
 
-const FormItem = Form.Item;
+import { FormItem } from './FormItem';
 
 export type SelectProps = FormikFieldProps & AntSelectProps & { children: React.ReactNode };
 
 export const Select = ({ name, required, label, children, ...restProps }: SelectProps) => {
   return (
     <Field name={name}>
-      {({ field: { value }, form: { touched, errors, setFieldValue, setFieldTouched } }: FieldProps) => (
-        <FormItem
-          required={required}
-          label={label}
-          validateStatus={touched[name] && errors[name] ? 'error' : ''}
-          help={touched[name] && errors[name]}
-        >
+      {({ field: { value }, form: { setFieldValue, setFieldTouched } }: FieldProps) => (
+        <FormItem name={name} required={required} label={label}>
           <AntSelect
-            onChange={(v: any) => setFieldValue(name, v)}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            onChange={(val: any) => setFieldValue(name, val)}
             onBlur={() => setFieldTouched(name)}
             value={value}
             {...restProps}

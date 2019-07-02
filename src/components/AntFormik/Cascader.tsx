@@ -1,23 +1,15 @@
 import * as React from 'react';
-import { Cascader as AntCascader, Form } from 'antd';
+import { Cascader as AntCascader } from 'antd';
 import { Field, FieldProps } from 'formik';
 import { FormikFieldProps } from './FieldProps';
 import { CascaderProps as AntCascaderProps } from 'antd/lib/cascader';
+import { FormItem } from './FormItem';
 
-const FormItem = Form.Item;
-
-export type CascaderProps = FormikFieldProps & AntCascaderProps;
-
-export const Cascader = ({ name, required, label, ...restProps }: CascaderProps) => (
+export const Cascader: React.FC<FormikFieldProps & AntCascaderProps> = ({ name, required, label, ...restProps }) => (
   <Field name={name}>
-    {({ field: { value }, form: { setFieldValue, touched, errors } }: FieldProps) => (
-      <FormItem
-        required={required}
-        label={label}
-        validateStatus={touched[name] && errors[name] ? 'error' : ''}
-        help={touched[name] && errors[name]}
-      >
-        <AntCascader value={value} onChange={value => setFieldValue(name, value)} {...restProps} />
+    {({ field: { value }, form: { setFieldValue } }: FieldProps) => (
+      <FormItem name={name} required={required} label={label}>
+        <AntCascader value={value} onChange={val => setFieldValue(name, val)} {...restProps} />
       </FormItem>
     )}
   </Field>

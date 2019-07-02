@@ -1,26 +1,19 @@
 import * as React from 'react';
-import { Transfer as AntTransfer, Form } from 'antd';
+import { Transfer as AntTransfer } from 'antd';
 import { Field, FieldProps } from 'formik';
 import { FormikFieldProps } from './FieldProps';
 import { TransferProps as AntTransferProps } from 'antd/lib/transfer';
 
-const FormItem = Form.Item;
+import { FormItem } from './FormItem';
 
-export type TransferProps = FormikFieldProps & AntTransferProps;
-
-export const Transfer = ({ name, required, label, ...restProps }: TransferProps) => (
+export const Transfer: React.FC<FormikFieldProps & AntTransferProps> = ({ name, required, label, ...restProps }) => (
   <Field name={name}>
-    {({ field: { value }, form: { touched, errors, setFieldValue, setFieldTouched } }: FieldProps) => (
-      <FormItem
-        required={required}
-        label={label}
-        validateStatus={touched[name] && errors[name] ? 'error' : ''}
-        help={touched[name] && errors[name]}
-      >
+    {({ field: { value }, form: { setFieldValue, setFieldTouched } }: FieldProps) => (
+      <FormItem name={name} required={required} label={label}>
         <AntTransfer
           targetKeys={value || []}
-          onChange={v => {
-            setFieldValue(name, v);
+          onChange={val => {
+            setFieldValue(name, val);
             setFieldTouched(name, true);
           }}
           {...restProps}

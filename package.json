@@ -3,22 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/core": "^10.0.10",
-    "@emotion/styled": "^10.0.12",
-    "@types/jest": "24.0.13",
-    "@types/node": "12.0.3",
-    "@types/react": "16.8.19",
-    "@types/react-dom": "16.8.4",
-    "@types/react-router-dom": "^4.3.3",
-    "@types/reactstrap": "^8.0.1",
-    "@types/uuid": "^3.4.4",
-    "@types/validator": "^10.11.1",
-    "@types/yup": "^0.26.16",
-    "antd": "^3.19.3",
+    "antd": "^3.19.8",
     "axios": "^0.19.0",
-    "babel-plugin-emotion": "^10.0.13",
+    "babel-plugin-emotion": "^10.0.14",
     "babel-plugin-import": "^1.12.0",
-    "bootstrap": "^4.3.1",
     "customize-cra": "^0.2.13",
     "formik": "^1.5.7",
     "less": "^3.9.0",
@@ -29,16 +17,15 @@
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
-    "reactstrap": "^8.0.0",
-    "typescript": "3.4.5",
-    "validator": "^11.0.0",
+    "typescript": "3.5.2",
     "yup": "^0.27.0"
   },
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "now-build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -56,13 +43,21 @@
     ]
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^1.10.2",
-    "@typescript-eslint/parser": "^1.10.2",
+    "@emotion/core": "^10.0.14",
+    "@emotion/styled": "^10.0.14",
+    "@types/jest": "24.0.15",
+    "@types/node": "12.0.10",
+    "@types/react": "~16.8.19",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-router-dom": "^4.3.4",
+    "@types/yup": "^0.26.18",
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^1.11.0",
     "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.3.0",
+    "eslint-config-prettier": "^5.0.0",
     "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-react": "^7.14.2",
     "prettier": "^1.18.2"
   },
-  "proxy": "http://68.183.177.173"
+  "proxy": "https://reqres.in/"
 }

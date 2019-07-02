@@ -1,26 +1,18 @@
 import * as React from 'react';
-import { Slider as AntSlider, Form } from 'antd';
+import { Slider as AntSlider } from 'antd';
 import { Field, FieldProps } from 'formik';
 import { FormikFieldProps } from './FieldProps';
 import { SliderProps as AntSliderProps } from 'antd/lib/slider';
+import { FormItem } from './FormItem';
 
-const FormItem = Form.Item;
-
-export type SliderProps = FormikFieldProps & AntSliderProps;
-
-export const Slider = ({ name, required, label, ...restProps }: SliderProps) => (
+export const Slider: React.FC<FormikFieldProps & AntSliderProps> = ({ name, required, label, ...restProps }) => (
   <Field name={name}>
-    {({ field: { value }, form: { touched, errors, setFieldValue, setFieldTouched } }: FieldProps) => (
-      <FormItem
-        required={required}
-        label={label}
-        validateStatus={touched[name] && errors[name] ? 'error' : ''}
-        help={touched[name] && errors[name]}
-      >
+    {({ field: { value }, form: { setFieldValue, setFieldTouched } }: FieldProps) => (
+      <FormItem name={name} required={required} label={label}>
         <AntSlider
           value={value}
-          onChange={e => {
-            setFieldValue(name, e.valueOf());
+          onChange={val => {
+            setFieldValue(name, val.valueOf());
             setFieldTouched(name, true);
           }}
           {...restProps}
