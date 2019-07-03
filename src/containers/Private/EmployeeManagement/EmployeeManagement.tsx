@@ -1,64 +1,25 @@
+// LIBRARIES
 import React from 'react';
-import { Menu, Icon } from 'antd';
+import { Switch, Route, RouteComponentProps, Link } from 'react-router-dom';
+// COMPONENTS
+import EmployeeManagementCreate from './Create';
+import EmployeeManagementView from './View';
+import EmployeeManagementUpdate from './Update';
+import EmployeeManagementList from './List';
+import { Page404 } from 'components/ErrorPages';
 
-import Table from 'components/Table';
-
-const EmployeeManagement = () => {
-  const subRoutes = [
-    {
-      path: '/details',
-      name: 'Employee Details',
-      icon: 'solution',
-    },
-    {
-      path: '/history',
-      name: 'Employee History',
-      icon: 'history',
-    },
-    {
-      path: '/educational-background',
-      name: 'Educational Background',
-      icon: 'book',
-    },
-    {
-      path: '/dependents',
-      name: 'Dependents',
-      icon: 'usergroup-add',
-    },
-    {
-      path: '/beneficiaries',
-      name: 'Beneficiaries',
-      icon: 'file-protect',
-    },
-  ];
+const EmployeeManagement: React.FC<RouteComponentProps> = ({ match }) => {
   return (
     <div>
-      <Menu selectedKeys={['/details']} mode="horizontal">
-        {subRoutes.map(route => (
-          <Menu.Item key={route.path}>
-            <Icon type={route.icon} />
-            {route.name}
-          </Menu.Item>
-        ))}
-      </Menu>
-      EmployeeManagement
-      <Table
-        url="posts"
-        columns={[
-          {
-            title: 'ID',
-            dataIndex: 'id',
-          },
-          {
-            title: 'Title',
-            dataIndex: 'title',
-          },
-          {
-            title: 'Body',
-            dataIndex: 'body',
-          },
-        ]}
-      />
+      <Link to={`${match.url}`}> Table list</Link> | <Link to={`${match.url}/view`}> View</Link> |
+      <Link to={`${match.url}/update`}> Update</Link> | <Link to={`${match.url}/create`}> Create</Link>
+      <Switch>
+        <Route exact path={`${match.url}/create`} component={EmployeeManagementCreate} />
+        <Route exact path={`${match.url}/update`} component={EmployeeManagementUpdate} />
+        <Route exact path={`${match.url}/view`} component={EmployeeManagementView} />
+        <Route exact path={`${match.url}`} component={EmployeeManagementList} />
+        <Page404 />
+      </Switch>
     </div>
   );
 };
