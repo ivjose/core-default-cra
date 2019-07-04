@@ -1,7 +1,19 @@
 {
   "version": 2,
   "name": "my-react-app",
-  "builds": [{ "src": "package.json", "use": "@now/static-build", "config": { "distDir": "build" } }],
+
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": {
+        "distDir": "build",
+        "env": {
+          "REACT_APP_API": "http://68.183.177.173"
+        }
+      }
+    }
+  ],
   "routes": [
     { "src": "/static/(.*)", "headers": { "cache-control": "s-maxage=31536000,immutable" }, "dest": "/static/$1" },
     { "src": "/favicon.ico", "dest": "/favicon.ico" },
