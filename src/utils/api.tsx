@@ -13,7 +13,7 @@ import axios from 'axios';
  * Create an Axios Client with defaults
  */
 const client = axios.create({
-  baseURL: process.env.NODE_ENV === 'production' ? process.env.REACT_APP_API : '',
+  baseURL: process.env.REACT_APP_API,
 });
 
 /**
