@@ -23,7 +23,7 @@ const Login: React.FC = () => {
     }
   };
 
-  console.log(process.env.NODE_ENV, 'asdasd');
+  console.log(process.env.REACT_APP_API, 'asdasd');
 
   return (
     <Formik
