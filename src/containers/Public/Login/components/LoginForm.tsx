@@ -18,8 +18,8 @@ const LoginForm: React.FC<FormikProps<IFormValue>> = () => {
   return (
     <Form>
       <Input
-        name="email"
-        type="email"
+        name="username"
+        type="text"
         placeholder="Enter your Username"
         prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
       />

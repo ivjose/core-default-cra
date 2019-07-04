@@ -11,7 +11,7 @@ import { AuthReducer } from './reducers';
 
 interface IAuthContextInterface {
   auth: IState;
-  signInUser: ({ email, password }: AuthSchema) => void;
+  signInUser: ({ username, password }: AuthSchema) => void;
   logoutUser: () => void;
   authUser: (userAuth: IState) => void;
 }
@@ -43,13 +43,13 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     loadToken();
   }, []);
 
-  const signInUser = async ({ email, password }: AuthSchema) => {
+  const signInUser = async ({ username, password }: AuthSchema) => {
     try {
       const response = await request({
-        url: '/api/login',
+        url: '/api/v1/login',
         method: 'POST',
         data: {
-          email,
+          username,
           password,
         },
       });

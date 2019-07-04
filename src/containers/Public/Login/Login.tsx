@@ -9,25 +9,27 @@ import { IFormValue } from './Types';
 import { authContext } from 'contexts/Auth/AuthContext';
 
 const Login: React.FC = () => {
-  const { signInUser } = React.useContext(authContext);
+  const { signInUser, auth } = React.useContext(authContext);
 
   const handleSubmit = async (values: IFormValue, actions: FormikActions<IFormValue>) => {
     console.log({ values, actions });
 
     actions.setSubmitting(true);
     try {
-      await signInUser({ email: values.email, password: values.password });
+      await signInUser({ username: values.username, password: values.password });
       actions.setSubmitting(false);
     } catch (error) {
       actions.setSubmitting(false);
     }
   };
 
+  console.log(auth, 'asdasd');
+
   return (
     <Formik
       initialValues={{
-        email: 'eve.holt@reqres.in',
-        password: 'cityslicka',
+        username: 'admin_user',
+        password: 'p@ssw0rd',
       }}
       onSubmit={handleSubmit}
       enableReinitialize={true}

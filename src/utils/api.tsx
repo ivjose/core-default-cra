@@ -8,13 +8,12 @@
  */
 
 import axios from 'axios';
-const URL_API = '';
 
 /**
  * Create an Axios Client with defaults
  */
 const client = axios.create({
-  baseURL: URL_API,
+  baseURL: process.env.NODE_ENV !== 'production' ? '' : process.env.REACT_APP_API,
 });
 
 /**
