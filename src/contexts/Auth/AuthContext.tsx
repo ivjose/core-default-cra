@@ -46,7 +46,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
   const signInUser = async ({ username, password }: AuthSchema) => {
     try {
       const response = await request({
-        url: '/api/v1/login',
+        url: 'http://68.183.177.173/api/v1/login',
         method: 'POST',
         data: {
           username,

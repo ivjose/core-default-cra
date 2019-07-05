@@ -4,9 +4,6 @@
 
   "builds": [
     {
-      "env": {
-        "REACT_APP_API": "http://68.183.177.173"
-      },
       "src": "package.json",
       "use": "@now/static-build",
       "config": {
