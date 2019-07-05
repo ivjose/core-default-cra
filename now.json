@@ -4,14 +4,13 @@
 
   "builds": [
     {
+      "env": {
+        "REACT_APP_API": "http://68.183.177.173"
+      },
       "src": "package.json",
       "use": "@now/static-build",
       "config": {
-        "distDir": "build",
-        "env": {
-          "REACT_APP_API": "http://68.183.177.173",
-          "REACT_APP_API": "http://68.183.177.173"
-        }
+        "distDir": "build"
       }
     }
   ],
