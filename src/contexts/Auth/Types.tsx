@@ -10,7 +10,7 @@ export interface IState extends ILoading {
 }
 
 export interface AuthSchema {
-  email: string;
+  username: string;
   password: string;
 }
 

@@ -41,7 +41,6 @@ const App: React.FC = () => {
             <PrivateRoute path="/employee-management" component={EmployeeManagement} />
             <PrivateRoute path="/timekeeping" component={Timekeeping} />
             <PrivateRoute path="/payroll" component={Payroll} />
-            <PrivateRoute path="/reports" component={EmployeeManagement} />
             <PrivateRoute path="/reports" component={Reports} />
 
             <PrivateRoute path="/settings" component={Settings} />

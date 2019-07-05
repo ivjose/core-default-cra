@@ -1,4 +1,3 @@
-export interface IFormValue {
-  email: string;
-  password: string;
-}
+import { AuthSchema } from 'contexts/Auth/Types';
+
+export type IFormValue = AuthSchema;

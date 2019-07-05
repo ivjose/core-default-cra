@@ -17,9 +17,10 @@ import { IFormValue } from '../Types';
 const LoginForm: React.FC<FormikProps<IFormValue>> = () => {
   return (
     <Form>
+      <h1>HELLLO WORLD</h1>
       <Input
-        name="email"
-        type="email"
+        name="username"
+        type="text"
         placeholder="Enter your Username"
         prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
       />
