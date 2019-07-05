@@ -69,7 +69,7 @@ const HeaderRightNav: React.FC = () => {
             </Menu.Item>
             <Menu.Item key="2" onClick={showConfirm}>
               <Icon type="logout" />
-              Log Uut
+              Log Out
             </Menu.Item>
           </Menu>
         }
