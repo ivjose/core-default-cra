@@ -9,7 +9,7 @@ import { IFormValue } from './Types';
 import { authContext } from 'contexts/Auth/AuthContext';
 
 const Login: React.FC = () => {
-  const { signInUser, auth } = React.useContext(authContext);
+  const { signInUser } = React.useContext(authContext);
 
   const handleSubmit = async (values: IFormValue, actions: FormikActions<IFormValue>) => {
     console.log({ values, actions });
