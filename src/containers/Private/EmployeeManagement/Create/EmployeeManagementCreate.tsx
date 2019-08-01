@@ -1,6 +1,6 @@
 import React from 'react';
 import { Steps } from 'antd';
-import Wizard from '././components/Wizard';
+import EmployeeWizard from './EmployeeWizard';
 const { Step } = Steps;
 
 const EmployeeManagementCreate = () => {
@@ -20,7 +20,7 @@ const EmployeeManagementCreate = () => {
         <Step title="Dependents" />
         <Step title="Beneficiaries" />
       </Steps>
-      <Wizard />
+      <EmployeeWizard />
     </div>
   );
 };

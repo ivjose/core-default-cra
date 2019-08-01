@@ -8,6 +8,7 @@ interface PageTwoProps {
 
 const PageTwo: React.FC<PageTwoProps> = props => {
   const { changePage } = props;
+  console.log(props, 'Two');
   return (
     <Form>
       <h1>Page Two</h1>

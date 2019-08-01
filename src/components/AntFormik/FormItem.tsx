@@ -14,8 +14,8 @@ export type FormItemProps = { showValidateSuccess?: boolean; children: React.Rea
 export const FormItem = ({ name, hasFeedback, showValidateSuccess, children, ...restProps }: FormItemProps) => (
   <Field name={name}>
     {({ form: { errors = {}, touched = {} } }: FieldProps) => {
-      const error = get(errors, name, undefined);
-      const isTouched = get(touched, name, undefined) as boolean;
+      const error = get(errors, name, false);
+      const isTouched = get(touched, name, false) as boolean;
       const hasError = error !== false && isTouched;
       const isValid = !error && isTouched;
 

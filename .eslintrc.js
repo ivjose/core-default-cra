@@ -32,7 +32,7 @@ module.exports = {
     },
     '@typescript-eslint/indent': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
-    '@typescript-eslint/camelcase': 'off',
+    // '@typescript-eslint/camelcase': 'off',
     'react/prop-types': 'off',
     'react/display-name': [{ ignoreTranspilerName: true }],
     //   "@typescript-eslint/camelcase": ["error", { "properties": "always" }]

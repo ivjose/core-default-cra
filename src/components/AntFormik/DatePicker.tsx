@@ -60,8 +60,8 @@ DatePicker.RangePicker = ({ name, required, label, ...restProps }: RangePickerPr
         <AntRangePicker
           name={name}
           value={value}
-          onChange={value => {
-            setFieldValue(name, value);
+          onChange={val => {
+            setFieldValue(name, val);
             setFieldTouched(name, true);
           }}
           {...restProps}
@@ -80,8 +80,8 @@ DatePicker.WeekPicker = ({ name, required, label, ...restProps }: WeekPickerProp
         <AntWeekPicker
           name={name}
           value={value}
-          onChange={value => {
-            setFieldValue(name, value);
+          onChange={val => {
+            setFieldValue(name, val);
             setFieldTouched(name, true);
           }}
           {...restProps}
