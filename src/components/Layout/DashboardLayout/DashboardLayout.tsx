@@ -3,6 +3,7 @@ import { Layout, Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 import HeaderRightNav from './components/HeaderRightNav';
 
+const { SubMenu } = Menu;
 const { Header, Sider, Content, Footer } = Layout;
 
 const DashboardLayout: React.FC = ({ children }) => {
@@ -33,6 +34,12 @@ const DashboardLayout: React.FC = ({ children }) => {
       path: '/settings',
       name: 'Settings',
       icon: 'setting',
+      subRoutes: [
+        {
+          path: 'crud',
+          name: 'CRUD',
+        },
+      ],
     },
   ];
 
@@ -60,15 +67,37 @@ const DashboardLayout: React.FC = ({ children }) => {
             </Link>
           </Menu.Item>
 
-          {routes.map(item => (
-            <Menu.Item key={item.path}>
-              <Link to={item.path}>
-                <Icon type={item.icon} />
-                <span>{item.name} </span>
-              </Link>
-            </Menu.Item>
-          ))}
-
+          {routes.map(item => {
+            if (item.subRoutes && item.subRoutes.length > 0) {
+              return (
+                <SubMenu
+                  key={item.path}
+                  title={
+                    <span>
+                      <Icon type={item.icon} />
+                      <span>{item.name}</span>
+                    </span>
+                  }
+                >
+                  {item.subRoutes.map(subItem => (
+                    <Menu.Item key={`${item.path}/${subItem.path}`}>
+                      <Link to={`${item.path}/${subItem.path}`}>
+                        <span>{subItem.name}</span>
+                      </Link>
+                    </Menu.Item>
+                  ))}
+                </SubMenu>
+              );
+            }
+            return (
+              <Menu.Item key={item.path}>
+                <Link to={item.path}>
+                  <Icon type={item.icon} />
+                  <span>{item.name}</span>
+                </Link>
+              </Menu.Item>
+            );
+          })}
           <Menu.Item key="2">
             <Link to="/all-forms">
               <Icon type="form" />

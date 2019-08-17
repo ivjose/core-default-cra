@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Transfer as AntTransfer } from 'antd';
 import { Field, FieldProps } from 'formik';
-import { FormikFieldProps } from './FieldProps';
 import { TransferProps as AntTransferProps } from 'antd/lib/transfer';
+import { FormikFieldProps } from './FieldProps';
 
 import { FormItem } from './FormItem';
 

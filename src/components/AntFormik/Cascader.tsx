@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Cascader as AntCascader } from 'antd';
 import { Field, FieldProps } from 'formik';
-import { FormikFieldProps } from './FieldProps';
 import { CascaderProps as AntCascaderProps } from 'antd/lib/cascader';
+import { FormikFieldProps } from './FieldProps';
 import { FormItem } from './FormItem';
 
 export const Cascader: React.FC<FormikFieldProps & AntCascaderProps> = ({ name, required, label, ...restProps }) => (

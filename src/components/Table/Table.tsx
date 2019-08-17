@@ -1,16 +1,10 @@
 import React from 'react';
 import { Table as AntTable } from 'antd';
-import { getList } from './helpers';
 import { ColumnProps, TableProps } from 'antd/lib/table';
 
-interface IQuery {
-  _limit: number;
-  _page: number;
-  sortField?: string;
-  sortOrder?: string;
-}
+import { Query } from './Types';
+import { getList } from './helpers';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Table = React.memo(({ url, columns }: { url: string; columns: any }) => {
   const [tableData, getTableData] = React.useState([]);
   const [isLoading, setLoading] = React.useState(false);
@@ -20,7 +14,7 @@ const Table = React.memo(({ url, columns }: { url: string; columns: any }) => {
   const [pageLimit, setPageLimit] = React.useState(10);
 
   React.useEffect(() => {
-    const fetchTableApi = async ({ params }: { params: IQuery }) => {
+    const fetchTableApi = async ({ params }: { params: Query }) => {
       setLoading(true);
 
       try {
@@ -57,7 +51,7 @@ const Table = React.memo(({ url, columns }: { url: string; columns: any }) => {
   return (
     <div>
       {errorMessage}
-      <AntTable rowKey="id" dataSource={tableData} columns={columns} pagination={pagination} loading={isLoading} />;
+      <AntTable rowKey="id" dataSource={tableData} columns={columns} pagination={pagination} loading={isLoading} />
     </div>
   );
 });

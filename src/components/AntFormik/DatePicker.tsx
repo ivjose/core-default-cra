@@ -1,4 +1,5 @@
 import * as React from 'react';
+import moment from 'moment';
 import { DatePicker as AntDatePicker } from 'antd';
 import { Field, FieldProps } from 'formik';
 import {
@@ -7,7 +8,6 @@ import {
   RangePickerProps as AntRangePickerProps,
   WeekPickerProps as AntWeekPickerProps,
 } from 'antd/lib/date-picker/interface';
-import moment from 'moment';
 import { FormikFieldProps } from './FieldProps';
 import { FormItem } from './FormItem';
 

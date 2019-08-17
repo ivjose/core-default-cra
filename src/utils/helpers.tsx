@@ -1,16 +1,15 @@
-import { ISaveLocalStorage } from './Types';
+import { SaveLocalStorage } from './Types';
 
 export const localStorage = {
-  save: function<T>({ value, name }: ISaveLocalStorage<T>): void {
+  save: function<T>({ value, name }: SaveLocalStorage<T>): void {
     window.localStorage.setItem(name, JSON.stringify(value));
   },
   get: function(name: string): string | null {
-    let localAuthUser: string | null = window.localStorage.getItem(name);
+    const localAuthUser: string | null = window.localStorage.getItem(name);
     if (typeof localAuthUser === 'string') {
       return localAuthUser;
-    } else {
-      return null;
     }
+    return null;
   },
   remove: function(name: string): void {
     window.localStorage.removeItem(name);

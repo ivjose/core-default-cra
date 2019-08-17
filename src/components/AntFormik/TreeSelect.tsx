@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { TreeSelect as AntTreeSelect } from 'antd';
 import { Field, FieldProps } from 'formik';
-import { FormikFieldProps } from './FieldProps';
 import { TreeSelectProps as AntTreeSelectProps } from 'antd/lib/tree-select';
 import { TreeNodeValue as AntTreeNodeValue } from 'antd/lib/tree-select/interface';
+import { FormikFieldProps } from './FieldProps';
 import { FormItem } from './FormItem';
 
 export type TreeSelectProps = FormikFieldProps & AntTreeSelectProps<AntTreeNodeValue> & { children?: React.ReactNode };

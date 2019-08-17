@@ -1,22 +1,22 @@
 import * as React from 'react';
 
 /** Custom types */
-import { IState, AuthSchema, ActionType, IAction } from './Types';
+import { localStorage } from 'utils/helpers';
+import AuthService from './api/AuthService';
+import { State, AuthSchema, ActionType, Action } from './Types';
 
 /** Utils */
 import { DEFAULT_USER_AUTH } from './constants';
-import request from 'utils/api';
-import { localStorage } from 'utils/helpers';
 import { AuthReducer } from './reducers';
 
-interface IAuthContextInterface {
-  auth: IState;
+interface AuthContextInterface {
+  auth: State;
   signInUser: ({ username, password }: AuthSchema) => void;
   logoutUser: () => void;
-  authUser: (userAuth: IState) => void;
+  authUser: (userAuth: State) => void;
 }
 
-export const authContext = React.createContext<IAuthContextInterface>({
+export const authContext = React.createContext<AuthContextInterface>({
   auth: DEFAULT_USER_AUTH,
   signInUser: () => {},
   logoutUser: () => {},
@@ -26,33 +26,27 @@ export const authContext = React.createContext<IAuthContextInterface>({
 const { Provider } = authContext;
 
 const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [auth, dispatch] = React.useReducer<React.Reducer<IState, IAction>>(AuthReducer, DEFAULT_USER_AUTH);
+  const [auth, dispatch] = React.useReducer<React.Reducer<State, Action>>(AuthReducer, DEFAULT_USER_AUTH);
 
-  React.useEffect(() => {
-    const loadToken = () => {
-      let returnValue: string | null = localStorage.get('UserAuth');
-      console.log(returnValue);
+  const authUser = (userAuth: State) => {
+    localStorage.save({ value: userAuth, name: 'UserAuth' });
+    dispatch({
+      type: ActionType.AUTH_SUCCESS,
+      payload: userAuth,
+    });
+  };
 
-      if (typeof returnValue === 'string') {
-        authUser(JSON.parse(returnValue));
-      } else {
-        logoutUser();
-      }
-    };
-
-    loadToken();
-  }, []);
+  const logoutUser = () => {
+    localStorage.clear();
+    dispatch({
+      type: ActionType.AUTH_LOGOUT,
+      payload: DEFAULT_USER_AUTH,
+    });
+  };
 
   const signInUser = async ({ username, password }: AuthSchema) => {
     try {
-      const response = await request({
-        url: 'https://68.183.177.173/api/v1/login',
-        method: 'POST',
-        data: {
-          username,
-          password,
-        },
-      });
+      const response = await AuthService.signIn({ username, password });
 
       dispatch({
         type: ActionType.AUTH_SIGN_IN,
@@ -68,21 +62,20 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     }
   };
 
-  const authUser = (userAuth: IState) => {
-    localStorage.save({ value: userAuth, name: 'UserAuth' });
-    dispatch({
-      type: ActionType.AUTH_SUCCESS,
-      payload: userAuth,
-    });
-  };
+  React.useEffect(() => {
+    const loadToken = () => {
+      const returnValue: string | null = localStorage.get('UserAuth');
+      console.log(returnValue);
 
-  const logoutUser = () => {
-    localStorage.clear();
-    dispatch({
-      type: ActionType.AUTH_LOGOUT,
-      payload: DEFAULT_USER_AUTH,
-    });
-  };
+      if (typeof returnValue === 'string') {
+        authUser(JSON.parse(returnValue));
+      } else {
+        logoutUser();
+      }
+    };
+
+    loadToken();
+  }, []);
 
   return (
     <Provider

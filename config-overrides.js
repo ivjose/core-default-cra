@@ -1,7 +1,6 @@
 const { override, fixBabelImports, addLessLoader } = require('customize-cra');
 const path = require('path');
 
-// const defaultLess = require('./src/styles/default.less');
 module.exports = override(
   fixBabelImports('import', {
     libraryName: 'antd',

@@ -1,6 +1,7 @@
 ## folders
 src/serviceWorker.ts
 src/**/__tests__/**
+src/styles/**
 
 
 ## files

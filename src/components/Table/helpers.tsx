@@ -1,13 +1,7 @@
 import request from 'utils/api';
+import { Query } from './Types';
 
-interface IQuery {
-  _limit: number;
-  _page: number;
-  sortField?: string;
-  sortOrder?: string;
-}
-
-export const getList = async ({ url, query }: { url: string; query: IQuery }) => {
+export const getList = async ({ url, query }: { url: string; query: Query }) => {
   console.log(url);
 
   const response = await request({

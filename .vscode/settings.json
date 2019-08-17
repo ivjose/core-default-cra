@@ -1,31 +1,33 @@
 {
-    "editor.formatOnSave": true,
-    "[javascript]": {
-        "editor.formatOnSave": false
+  "editor.formatOnSave": true,
+  // "[javascript]": {
+  //   "editor.formatOnSave": false
+  // },
+  // "[javascriptreact]": {
+  //   "editor.formatOnSave": false
+  // },
+  "[typescript]": {
+    "editor.formatOnSave": false
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": false
+  },
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "typescript",
+      "autoFix": true
     },
-    "[javascriptreact]": {
-        "editor.formatOnSave": false
-    },
-    "[typescript]": {
-        "editor.formatOnSave": false
-    },
-    "[typescriptreact]": {
-        "editor.formatOnSave": false
-    },
-    "eslint.autoFixOnSave": true,
-    "eslint.validate": [
-        "javascript",
-        "javascriptreact",
-        { "language": "typescript", "autoFix": true },
-        { "language": "typescriptreact", "autoFix": true }
-    ],
-    "eslint.trace.server": "messages",
-    "files.autoSave": "onWindowChange",
-    "cSpell.words": [
-        "Cascader",
-        "Unmount"
-    ],
-    "cSpell.ignoreWords": [
-        "browserslist"
-    ]
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
+  ],
+  // "prettier.eslintIntegration": true,
+  "eslint.trace.server": "messages",
+  "files.autoSave": "onWindowChange",
+  "cSpell.words": ["Cascader", "Unmount"],
+  "cSpell.ignoreWords": ["browserslist"]
 }

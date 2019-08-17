@@ -1,8 +1,8 @@
-export interface ILoading {
+export interface Loading {
   loading?: boolean;
 }
 
-export interface IState extends ILoading {
+export interface State extends Loading {
   token: string;
   status: boolean;
   error?: string;
@@ -21,12 +21,12 @@ export enum ActionType {
   AUTH_LOGOUT = 'AUTH_LOGOUT',
 }
 
-export interface IAction {
+export interface Action {
   type: ActionType;
-  payload?: IState | ILoading;
+  payload?: State | Loading;
 }
 
-// export interface IState {
+// export interface State {
 //   token: string;
 //   status: boolean;
 // }

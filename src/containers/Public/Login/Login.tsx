@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Formik, FormikProps, FormikActions } from 'formik';
 
+import { authContext } from 'contexts/Auth/AuthContext';
 import LoginForm from './components/LoginForm';
 
 import { loginSchema } from './validation';
 import { IFormValue } from './Types';
 /** Context */
-import { authContext } from 'contexts/Auth/AuthContext';
 
 const Login: React.FC = () => {
   const { signInUser } = React.useContext(authContext);
@@ -32,7 +32,7 @@ const Login: React.FC = () => {
         password: 'p@ssw0rd',
       }}
       onSubmit={handleSubmit}
-      enableReinitialize={true}
+      enableReinitialize
       validationSchema={loginSchema}
       render={(formikBag: FormikProps<IFormValue>) => <LoginForm {...formikBag} />}
     />

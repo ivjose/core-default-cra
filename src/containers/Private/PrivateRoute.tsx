@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import { Route, Redirect, RouteComponentProps, withRouter } from 'react-router-dom';
 import { authContext } from 'contexts/Auth/AuthContext';
-import { IPageChecker } from 'utils/Types';
+import { PageChecker } from 'utils/Types';
 import Loader from 'components/Loader';
 import { DashboardLayout } from 'components/Layout';
 
-const PrivateRoute: React.FC<RouteComponentProps & IPageChecker> = ({ component: Component, ...rest }) => {
+const PrivateRoute: React.FC<RouteComponentProps & PageChecker> = ({ component: Component, ...rest }) => {
   const { auth } = React.useContext(authContext);
 
   return (

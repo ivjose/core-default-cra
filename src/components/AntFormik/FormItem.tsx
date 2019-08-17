@@ -21,6 +21,7 @@ export const FormItem = ({ name, hasFeedback, showValidateSuccess, children, ...
 
       return (
         <Form.Item
+          // eslint-disable-next-line no-nested-ternary
           validateStatus={hasError ? 'error' : isValid && showValidateSuccess ? 'success' : undefined}
           hasFeedback={hasFeedback && isValid}
           help={(hasError && error) || (isValid && '')}

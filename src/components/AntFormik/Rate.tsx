@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Rate as AntRate } from 'antd';
 import { Field, FieldProps } from 'formik';
-import { FormikFieldProps } from './FieldProps';
 import { RateProps as AntRateProps } from 'antd/lib/rate';
+import { FormikFieldProps } from './FieldProps';
 import { FormItem } from './FormItem';
 
 export const Rate: React.FC<FormikFieldProps & AntRateProps> = ({ name, required, label, ...restProps }) => (

@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import { Route, Redirect, withRouter, RouteComponentProps } from 'react-router-dom';
 import { authContext } from 'contexts/Auth/AuthContext';
-import { IPageChecker } from 'utils/Types';
+import { PageChecker } from 'utils/Types';
 import Loader from 'components/Loader';
 import { LoginLayout } from 'components/Layout';
 
-const PublicRoute: React.FC<RouteComponentProps & IPageChecker> = ({ component: Component, location, ...rest }) => {
+const PublicRoute: React.FC<RouteComponentProps & PageChecker> = ({ component: Component, location, ...rest }) => {
   const { from } = location.state || { from: { pathname: '/dashboard' } };
   const { auth } = React.useContext(authContext);
 

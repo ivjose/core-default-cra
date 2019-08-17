@@ -53,7 +53,7 @@ const HeaderRightNav: React.FC = () => {
       <HeaderLink to="dashboard">
         <Icon type="bell" />
       </HeaderLink>
-      <Tooltip placement="bottom" title={'FAQ'}>
+      <Tooltip placement="bottom" title="FAQ">
         <HeaderAction>
           <Icon type="exclamation-circle" />
         </HeaderAction>
@@ -80,8 +80,13 @@ const HeaderRightNav: React.FC = () => {
             style={{ backgroundColor: 'gray', verticalAlign: 'middle' }}
             src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
           />
-          <span style={{ marginLeft: 8 }}>
-            <b>Hi!</b> John Doe
+          <span
+            style={{
+              marginLeft: 8,
+            }}
+          >
+            <b>Hi!</b>
+            John Doe
           </span>
         </HeaderAction>
       </Dropdown>

@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { PageInternalError } from 'components/ErrorPages';
 
-interface IState {
+interface State {
   hasError: boolean;
 }
 
-export default class ErrorBoundary extends Component<{}, IState> {
-  state: IState = {
+export default class ErrorBoundary extends React.Component<{}, State> {
+  state: State = {
     hasError: false,
   };
 
@@ -14,10 +14,13 @@ export default class ErrorBoundary extends Component<{}, IState> {
     this.setState({ hasError: true });
   }
 
-  render({ hasError } = this.state) {
+  render() {
+    const { hasError } = this.state;
+    const { children } = this.props;
+
     if (hasError) {
       return <PageInternalError />;
     }
-    return this.props.children;
+    return children;
   }
 }

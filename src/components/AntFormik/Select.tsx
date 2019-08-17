@@ -32,6 +32,7 @@ type Option = OptionProps & { label: React.ReactNode | string | number };
 
 Select.renderOptions = (options: Option[]) =>
   options.map(({ label, ...restProps }, index) => (
+    // eslint-disable-next-line react/no-array-index-key
     <AntSelect.Option key={`select-option-Ant${index}`} {...restProps}>
       {label}
     </AntSelect.Option>

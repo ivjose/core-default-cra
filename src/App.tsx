@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Switch, Redirect, Route } from 'react-router-dom';
 /** Context API */
-import AuthContextProvider from 'contexts/Auth/AuthContext';
-import GlobalStyle from './GlobalStyle';
 // shared components
 import Loader from 'components/Loader';
 import PrivateRoute from 'containers/Private/PrivateRoute';
 import PublicRoute from 'containers/Public/PublicRoute';
 import { Page404 } from 'components/ErrorPages';
+import AuthContextProvider from './contexts/Auth/AuthContext';
+import GlobalStyle from './GlobalStyle';
 import ErrorBoundary from './ErrorBoundary';
 
 // Private Routes or Authenticated Routes
@@ -18,7 +18,7 @@ const EmployeeManagement = React.lazy(() => import('containers/Private/EmployeeM
 const Timekeeping = React.lazy(() => import('containers/Private/Timekeeping'));
 const Payroll = React.lazy(() => import('containers/Private/Payroll'));
 const Reports = React.lazy(() => import('containers/Private/Reports'));
-const Settings = React.lazy(() => import('containers/Private/Settings'));
+const CRUD = React.lazy(() => import('containers/Private/Settings/CRUD'));
 
 // Routes can access in Public
 const Login = React.lazy(() => import('containers/Public/Login'));
@@ -43,7 +43,7 @@ const App: React.FC = () => {
             <PrivateRoute path="/payroll" component={Payroll} />
             <PrivateRoute path="/reports" component={Reports} />
 
-            <PrivateRoute path="/settings" component={Settings} />
+            <PrivateRoute path="/settings/crud" component={CRUD} />
 
             <Route exact path="/404" component={Page404} />
             <Route component={Page404} />

@@ -30,9 +30,8 @@ const formItemLayout = {
     sm: { span: 10 },
   },
 };
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const mockData: any[] = [];
+// eslint-disable-next-line no-plusplus
 for (let i = 0; i < 20; i++) {
   mockData.push({
     key: i.toString(),

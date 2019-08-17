@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { AutoComplete as AntAutoComplete } from 'antd';
 import { Field, FieldProps } from 'formik';
-import { FormikFieldProps } from './FieldProps';
 import { AutoCompleteProps as AntAutoCompleteProps } from 'antd/lib/auto-complete';
+import { FormikFieldProps } from './FieldProps';
 import { FormItem } from './FormItem';
 
 export const AutoComplete: React.FC<FormikFieldProps & AntAutoCompleteProps> = ({

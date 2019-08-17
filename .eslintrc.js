@@ -1,11 +1,5 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  extends: [
-    'plugin:@typescript-eslint/recommended', // uses typescript-specific linting rules
-    'plugin:react/recommended', // uses react-specific linting rules
-    'plugin:prettier/recommended', // enables eslint-plugin-prettier and eslint-config-prettier
-    'prettier/react', // disables react-specific linting rules that conflict with prettier
-  ],
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
@@ -15,26 +9,68 @@ module.exports = {
     project: './tsconfig.json',
     tsconfigRootDir: './',
   },
+  env: {
+    browser: true,
+    'jest/globals': true,
+  },
+  plugins: ['@typescript-eslint', 'react-hooks', 'jest', 'react', 'prettier'],
+  extends: [
+    'airbnb',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:import/typescript',
+    'plugin:prettier/recommended',
+    'prettier/@typescript-eslint',
+  ],
   settings: {
+    'import/resolver': {
+      node: {
+        paths: ['src'],
+      },
+    },
     react: {
       version: 'detect',
     },
   },
+
   rules: {
-    '@typescript-eslint/interface-name-prefix': 'always',
-    //   '@typescript-eslint/no-explicit-any': 'always',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/no-use-before-define': 'off',
-    '@typescript-eslint/member-delimiter-style': {
-      delimiter: 'none',
-      requireLast: true,
-    },
+    'import/named': 'off',
+    'import/export': 'off',
+    'import/prefer-default-export': 'off',
+    'import/no-extraneous-dependencies': [
+      'error',
+      { devDependencies: false, optionalDependencies: false, peerDependencies: false },
+    ],
     '@typescript-eslint/indent': 'off',
+    '@typescript-eslint/prefer-interface': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
-    // '@typescript-eslint/camelcase': 'off',
+    '@typescript-eslint/camelcase': ['error', { properties: 'never' }],
+    'react/jsx-filename-extension': [
+      'warn',
+      {
+        extensions: ['.jsx', '.tsx'],
+      },
+    ],
     'react/prop-types': 'off',
-    'react/display-name': [{ ignoreTranspilerName: true }],
-    //   "@typescript-eslint/camelcase": ["error", { "properties": "always" }]
+    'react-hooks/rules-of-hooks': 'error',
+    'react/jsx-props-no-spreading': 'off',
+    'react/jsx-wrap-multilines': 'off',
+    camelcase: 'off',
+    'func-names': ['error', 'as-needed'],
+    'object-shorthand': 'off',
+    'no-unused-expressions': [
+      'warn',
+      {
+        allowShortCircuit: true,
+        allowTernary: true,
+      },
+    ],
+    // 'prettier/prettier': [
+    //   'error',
+    //   {
+    //     singleQuote: true,
+    //     semi: false
+    //   }
+    // ]
   },
 };

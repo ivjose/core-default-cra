@@ -18,7 +18,7 @@ export const registrationSchema = Yup.object().shape({
   fruits_search: Yup.string().required('This field is required!'),
 });
 
-interface IFormValue {
+interface FormValue {
   first_name: string;
   password: string;
   comments: string;
@@ -52,14 +52,14 @@ class AllForms extends Component<any, any> {
             price: 50,
             price_range: [20, 50],
           }}
-          onSubmit={(values: IFormValue, actions: FormikActions<IFormValue>) => {
+          onSubmit={(values: FormValue, actions: FormikActions<FormValue>) => {
             console.log({ values, actions });
             alert(JSON.stringify(values, null, 2));
             actions.setSubmitting(false);
           }}
-          enableReinitialize={true}
+          enableReinitialize
           validationSchema={registrationSchema}
-          render={(formikBag: FormikProps<IFormValue>) => <SampleForm {...formikBag} />}
+          render={(formikBag: FormikProps<FormValue>) => <SampleForm {...formikBag} />}
         />
       </div>
     );
