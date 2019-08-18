@@ -1,22 +1,19 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-import request from 'utils/api';
+import CRUDService from '../api/CRUDService';
 
 import CustomList from './components/CustomList';
 
-import { ListProps } from './Types';
+import { PostsListProps } from '../Types';
 
 const CRUDList: React.FC = () => {
-  const [list, setList] = React.useState<ListProps[]>([]);
+  const [list, setList] = React.useState<PostsListProps[]>([]);
 
   React.useEffect(() => {
     const loadList = async () => {
       try {
-        const response = await request({
-          url: 'https://jsonplaceholder.typicode.com/posts',
-          method: 'GET',
-        });
+        const response = await CRUDService.postsList();
         setList([...response]);
       } catch (error) {
         console.log('Error', error);

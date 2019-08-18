@@ -4,12 +4,12 @@ import { notification } from 'antd';
 import { Formik, FormikProps, FormikActions } from 'formik';
 
 import CRUDService from '../api/CRUDService';
-import PostForms from './components/PostForms';
+import PostForms from '../components/PostForms';
 import { CRUDSchema } from './validation';
-import { FormValue } from './Types';
+import { FormProps } from '../Types';
 
 const CRUDAdd: React.FC = () => {
-  const handleSubmit = async (values: FormValue, actions: FormikActions<FormValue>) => {
+  const handleSubmit = async (values: FormProps, actions: FormikActions<FormProps>) => {
     console.log({ values, actions });
 
     actions.setSubmitting(true);
@@ -41,7 +41,7 @@ const CRUDAdd: React.FC = () => {
       onSubmit={handleSubmit}
       enableReinitialize
       validationSchema={CRUDSchema}
-      render={(formikBag: FormikProps<FormValue>) => <PostForms {...formikBag} />}
+      render={(formikBag: FormikProps<FormProps>) => <PostForms {...formikBag} />}
     />
   );
 };

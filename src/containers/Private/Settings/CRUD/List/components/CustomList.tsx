@@ -2,8 +2,6 @@ import React from 'react';
 import { List } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
 
-import { ListProps } from '../Types';
-
 const CustomList = ({ list, match }: any) => {
   console.log(match.path, 'DDDDD ===');
   return (
