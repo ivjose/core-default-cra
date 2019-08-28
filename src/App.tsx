@@ -18,7 +18,7 @@ const EmployeeManagement = React.lazy(() => import('containers/Private/EmployeeM
 const Timekeeping = React.lazy(() => import('containers/Private/Timekeeping'));
 const Payroll = React.lazy(() => import('containers/Private/Payroll'));
 const Reports = React.lazy(() => import('containers/Private/Reports'));
-const CRUD = React.lazy(() => import('containers/Private/Settings/CRUD'));
+const CRUDv2 = React.lazy(() => import('containers/Private/Settings/CRUDv2'));
 
 // Routes can access in Public
 const Login = React.lazy(() => import('containers/Public/Login'));
@@ -43,7 +43,7 @@ const App: React.FC = () => {
             <PrivateRoute path="/payroll" component={Payroll} />
             <PrivateRoute path="/reports" component={Reports} />
 
-            <PrivateRoute path="/settings/crud" component={CRUD} />
+            <PrivateRoute path="/settings/crud" component={CRUDv2} />
 
             <Route exact path="/404" component={Page404} />
             <Route component={Page404} />
