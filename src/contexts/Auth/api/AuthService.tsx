@@ -2,12 +2,12 @@ import request from 'utils/api';
 
 import { AuthSchema } from '../Types';
 
-const signIn = ({ username, password }: AuthSchema) => {
+const signIn = ({ email, password }: AuthSchema) => {
   return request({
-    url: 'https://68.183.177.173/api/v1/login',
+    url: '/login',
     method: 'POST',
     data: {
-      username,
+      email,
       password,
     },
   });

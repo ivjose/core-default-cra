@@ -11,7 +11,7 @@ import { AuthReducer } from './reducers';
 
 interface AuthContextInterface {
   auth: State;
-  signInUser: ({ username, password }: AuthSchema) => void;
+  signInUser: ({ email, password }: AuthSchema) => void;
   logoutUser: () => void;
   authUser: (userAuth: State) => void;
 }
@@ -26,10 +26,17 @@ export const authContext = React.createContext<AuthContextInterface>({
 const { Provider } = authContext;
 
 const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [auth, dispatch] = React.useReducer<React.Reducer<State, Action>>(AuthReducer, DEFAULT_USER_AUTH);
+  const returnValue: string | null = localStorage.get('UserAuth');
+
+  const [auth, dispatch] = React.useReducer<React.Reducer<State, Action>>(
+    AuthReducer,
+    returnValue ? { ...DEFAULT_USER_AUTH, ...JSON.parse(returnValue) } : DEFAULT_USER_AUTH,
+  );
 
   const authUser = (userAuth: State) => {
     localStorage.save({ value: userAuth, name: 'UserAuth' });
+    console.log(userAuth, 'DDD TEST VALUE asdasd');
+
     dispatch({
       type: ActionType.AUTH_SUCCESS,
       payload: userAuth,
@@ -44,9 +51,9 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     });
   };
 
-  const signInUser = async ({ username, password }: AuthSchema) => {
+  const signInUser = async ({ email, password }: AuthSchema) => {
     try {
-      const response = await AuthService.signIn({ username, password });
+      const response = await AuthService.signIn({ email, password });
 
       dispatch({
         type: ActionType.AUTH_SIGN_IN,
@@ -59,19 +66,41 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
       });
     } catch (error) {
       // console.log(error, 'data ERROR');
+      // Error 😨
+      if (error.response) {
+        /*
+         * The request was made and the server responded with a
+         * status code that falls out of the range of 2xx
+         */
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        /*
+         * The request was made but no response was received, `error.request`
+         * is an instance of XMLHttpRequest in the browser and an instance
+         * of http.ClientRequest in Node.js
+         */
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request and triggered an Error
+        console.log('Error', error.message);
+      }
+      console.log(error);
     }
   };
 
   React.useEffect(() => {
     const loadToken = () => {
-      const returnValue: string | null = localStorage.get('UserAuth');
-      console.log(returnValue);
-
-      if (typeof returnValue === 'string') {
-        authUser(JSON.parse(returnValue));
-      } else {
+      console.log(auth, 'Dddd ====asd');
+      if (!auth.status) {
         logoutUser();
       }
+      // if (typeof returnValue === 'string') {
+      //   authUser(JSON.parse(returnValue));
+      // } else {
+
+      // }
     };
 
     loadToken();

@@ -19,9 +19,9 @@ const LoginForm: React.FC<FormikProps<IFormValue>> = () => {
     <Form>
       <h1>HELLLO WORLD</h1>
       <Input
-        name="username"
-        type="text"
-        placeholder="Enter your Username"
+        name="email"
+        type="email"
+        placeholder="Enter your Email"
         prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
       />
       <Input.Password

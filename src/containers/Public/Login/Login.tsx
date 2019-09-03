@@ -16,7 +16,7 @@ const Login: React.FC = () => {
 
     actions.setSubmitting(true);
     try {
-      await signInUser({ username: values.username, password: values.password });
+      await signInUser({ email: values.email, password: values.password });
       actions.setSubmitting(false);
     } catch (error) {
       actions.setSubmitting(false);
@@ -28,8 +28,8 @@ const Login: React.FC = () => {
   return (
     <Formik
       initialValues={{
-        username: 'admin_user',
-        password: 'p@ssw0rd',
+        email: 'eve.holt@reqres.in',
+        password: 'cityslicka',
       }}
       onSubmit={handleSubmit}
       enableReinitialize

@@ -10,7 +10,7 @@ export interface State extends Loading {
 }
 
 export interface AuthSchema {
-  username: string;
+  email: string;
   password: string;
 }
 
