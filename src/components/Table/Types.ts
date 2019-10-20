@@ -1,6 +1,6 @@
 export interface Query {
-  _limit: number;
-  _page: number;
-  sortField?: string;
-  sortOrder?: string;
+  _limit: number | undefined;
+  _page: number | undefined;
+  sortField?: string | null;
+  sortOrder?: string | null;
 }

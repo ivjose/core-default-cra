@@ -92,7 +92,6 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 
   React.useEffect(() => {
     const loadToken = () => {
-      console.log(auth, 'Dddd ====asd');
       if (!auth.status) {
         logoutUser();
       }
@@ -104,6 +103,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     };
 
     loadToken();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

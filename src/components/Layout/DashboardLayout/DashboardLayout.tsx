@@ -59,7 +59,7 @@ const DashboardLayout: React.FC = ({ children }) => {
       >
         <div className="logo" style={{ height: 32, background: 'rgba(255, 255, 255, 0.2)', margin: 16 }} />
 
-        <Menu theme="dark"  defaultSelectedKeys={['1']}>
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.Item key="1">
             <Link to="/dashboard">
               <Icon type="dashboard" />
