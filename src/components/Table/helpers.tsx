@@ -1,4 +1,5 @@
 import request from 'utils/api';
+import queryString from 'query-string';
 import { Query } from './Types';
 
 export const getList = async ({ url, query }: { url: string; query: Query }) => {
@@ -9,6 +10,12 @@ export const getList = async ({ url, query }: { url: string; query: Query }) => 
     method: 'GET',
     params: {
       ...query,
+    },
+    paramsSerializer: function(params: any) {
+      console.log(queryString.stringify({ ...params }), 'ASDAS parmas');
+
+      // return queryString.stringify({ ...params });
+      return queryString.stringify({ ...params }, { sort: false });
     },
   });
 

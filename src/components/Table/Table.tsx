@@ -25,6 +25,8 @@ const Table: React.FC<TableProp & PaginationProps> = ({ url, columns, location, 
   const [isLoading, setLoading] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('');
   const [tables, setTables] = React.useState<TableTypes>({ page: 1, pageSize: 10, data: [], total: 150 });
+  const [filter, setFilter] = React.useState({});
+  const [sort, setSort] = React.useState({});
 
   const getInitialPage = ({ params, returnValue }: { params: string; returnValue: string }): number | undefined => {
     const searchParams = new URLSearchParams(params);
@@ -70,8 +72,8 @@ const Table: React.FC<TableProp & PaginationProps> = ({ url, columns, location, 
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     // onChangeUrl(initialPage, initialPageSize);
     setLoading(true);
-    fetchTableApi({ params: { _page: initialPage, _limit: initialPageSize } });
-  }, [url, location.search]);
+    fetchTableApi({ params: { _page: initialPage, _limit: initialPageSize, ...sort, ...filter } });
+  }, [url, location.search, filter, sort]);
 
   const onChangeUrl = (current?: string | number | null, pageSize?: string | number | null): void => {
     const parsed = {
@@ -112,12 +114,24 @@ const Table: React.FC<TableProp & PaginationProps> = ({ url, columns, location, 
     });
   };
 
-  console.log(tables.data, 'TABLIE LIST');
+  const handleTableChange = (pagination: any, filters: any, sorter: any) => {
+    const { field: _sort, order } = sorter;
 
+    if (sorter) setSort({ _sort, _order: order === 'ascend' ? 'asc' : 'desc' });
+    if (filters) setFilter(filters);
+  };
+  console.log(sort, 'Sort asda sd');
   return (
     <div>
       {errorMessage}
-      <AntTable rowKey="id" dataSource={tables.data} columns={columns} pagination={false} loading={isLoading} />
+      <AntTable
+        rowKey="id"
+        dataSource={tables.data}
+        columns={columns}
+        pagination={false}
+        loading={isLoading}
+        onChange={handleTableChange}
+      />
       {tables.data && tables.data.length && (
         <Row type="flex" justify="end" style={{ marginTop: 24 }}>
           <Col>

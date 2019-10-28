@@ -11,10 +11,13 @@ const Reports = () => {
           {
             title: 'ID',
             dataIndex: 'id',
+            sorter: true,
           },
           {
             title: 'Title',
             dataIndex: 'title',
+            sorter: true,
+            filters: [{ text: 'Male', value: 'male' }, { text: 'Female', value: 'female' }],
           },
           {
             title: 'Body',
